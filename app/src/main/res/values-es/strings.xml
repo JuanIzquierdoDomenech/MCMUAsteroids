@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="app_name">MCMUAsteroids</string>
+
+    <string name="asteroids">Asteroides</string>
+
+    <string name="start">Empezar</string>
+    <string name="config">Configuracion</string>
+    <string name="about">Acerca de</string>
+    <string name="exit">Salir</string>
+
+    <string name="action_settings">Settings</string>
+
+</resources>
