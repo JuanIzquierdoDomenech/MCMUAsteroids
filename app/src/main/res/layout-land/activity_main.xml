@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="25sp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        style="@style/AsteroidText"/>
 
     <TableLayout
         android:layout_width="match_parent"
@@ -27,13 +28,15 @@
                 android:id="@+id/btn_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/start"/>
+                android:text="@string/start"
+                style="@style/AsteroidButton"/>
 
             <Button
                 android:id="@+id/btn_config"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/config"/>
+                android:text="@string/config"
+                style="@style/AsteroidButton"/>
         </TableRow>
 
         <TableRow>
@@ -41,13 +44,15 @@
                 android:id="@+id/btn_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/about"/>
+                android:text="@string/about"
+                style="@style/AsteroidButton"/>
 
             <Button
                 android:id="@+id/btn_exit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/exit"/>
+                android:text="@string/exit"
+                style="@style/AsteroidButton"/>
         </TableRow>
 
     </TableLayout>
