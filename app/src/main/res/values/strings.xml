@@ -2,13 +2,14 @@
 
     <string name="app_name">MCMUAsteroids</string>
 
+    <!-- Asteroids activity strings -->
     <string name="asteroids">Asteroids</string>
-
-    <string name="start">Start</string>
-    <string name="config">Configuration</string>
+    <string name="play">Play</string>
+    <string name="options">Options</string>
     <string name="about">About</string>
     <string name="exit">Exit</string>
 
-    <string name="action_settings">Settings</string>
+    <!-- About activity -->
+    <string name="about_text">Information about this app developers team...</string>
 
 </resources>

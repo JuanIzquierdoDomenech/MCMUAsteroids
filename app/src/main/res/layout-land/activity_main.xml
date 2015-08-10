@@ -1,60 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:gravity="center"
-    android:padding="30dp"
-    tools:context=".MainActivity">
+    android:padding="30dp">
 
     <TextView
-        android:text="@string/asteroids"
+        android:theme="@style/Asteroids.TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="25sp"
-        android:layout_marginBottom="20dp"
-        style="@style/AsteroidText"/>
+        android:text="@string/asteroids"/>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:stretchColumns="*">
 
         <TableRow>
             <Button
-                android:id="@+id/btn_start"
+                android:id="@+id/btn_asteroids_play"
+                android:theme="@style/Asteroids.Button"
+                android:background="@color/bright_orange1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/start"
-                style="@style/AsteroidButton"/>
+                android:layout_margin="10dp"
+                android:text="@string/play" />
 
             <Button
-                android:id="@+id/btn_config"
+                android:id="@+id/btn_asteroids_options"
+                android:theme="@style/Asteroids.Button"
+                android:background="@color/bright_orange2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/config"
-                style="@style/AsteroidButton"/>
+                android:layout_margin="10dp"
+                android:text="@string/options" />
         </TableRow>
 
         <TableRow>
             <Button
-                android:id="@+id/btn_about"
+                android:id="@+id/btn_asteroids_about"
+                android:theme="@style/Asteroids.Button"
+                android:background="@color/bright_orange3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/about"
-                style="@style/AsteroidButton"/>
+                android:layout_margin="10dp"
+                android:text="@string/about" />
 
             <Button
-                android:id="@+id/btn_exit"
+                android:id="@+id/btn_asteroids_exit"
+                android:theme="@style/Asteroids.Button"
+                android:background="@color/bright_orange4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/exit"
-                style="@style/AsteroidButton"/>
+                android:layout_margin="10dp"
+                android:text="@string/exit" />
         </TableRow>
-
     </TableLayout>
+
+
+
 
 </LinearLayout>

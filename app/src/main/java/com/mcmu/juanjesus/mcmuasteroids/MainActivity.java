@@ -1,38 +1,43 @@
 package com.mcmu.juanjesus.mcmuasteroids;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends ActionBarActivity {
+    //region Private Member Variables
+    private Button btnLaunchAboutActivity;
+    private Button btnExit;
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        linkUI();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    private void linkUI()
+    {
+        btnLaunchAboutActivity = (Button)findViewById(R.id.btn_asteroids_about);
+        btnLaunchAboutActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent aboutActivityIntent = new Intent(v.getContext(), AboutActivity.class);
+                startActivity(aboutActivityIntent);
+            }
+        });
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        btnExit = (Button)findViewById(R.id.btn_asteroids_exit);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }
