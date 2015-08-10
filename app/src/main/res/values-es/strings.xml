@@ -16,4 +16,14 @@
     <!-- About activity -->
     <string name="about_text">Información sobre los desarrolladores de esta app...</string>
 
+    <!-- Main preferences -->
+    <string name="play_music">Reproducir música</string>
+    <string name="play_music_summary">Reproducir música de fondo</string>
+
+    <string name="graphics_level">Nivel de gráficos</string>
+    <string name="graphics_level_summary">Elige nivel de gráficos</string>
+
+    <string name="asteroid_fragments">Número de asteroides</string>
+    <string name="asteroid_fragments_summary">Elige en cuantos trozos se divide un asteroide</string>
+
 </resources>

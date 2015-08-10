@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     //region Private Member Variables
     private Button btnLaunchAboutActivity;
+    private Button btnLaunchPreferencesActivity;
     private Button btnExit;
     //endregion
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         //boolean response = false;
         switch(id) {
             case R.id.menu_settings:
+                showPreferencesActivity();
                 break;
             case R.id.menu_about:
                 showAboutActivity();
@@ -84,13 +86,26 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnLaunchPreferencesActivity = (Button)findViewById(R.id.btn_asteroids_options);
+        btnLaunchPreferencesActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPreferencesActivity();
+            }
+        });
     }
 
     private void showAboutActivity() {
         Intent aboutActivityIntent = new Intent(getApplicationContext(), AboutActivity.class);
         aboutActivityIntent.putExtra("SendIntent", "This is some data :D");
-        //startActivity(aboutActivityIntent);
-        startActivityForResult(aboutActivityIntent, 9999);
+        startActivity(aboutActivityIntent);
+        //startActivityForResult(aboutActivityIntent, 9999);
+    }
+
+    private void showPreferencesActivity() {
+        Intent preferencesActivityIntent = new Intent(getApplicationContext(), Preferences.class);
+        startActivity(preferencesActivityIntent);
     }
     //endregion
 

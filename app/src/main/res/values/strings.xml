@@ -16,4 +16,14 @@
     <!-- About activity -->
     <string name="about_text">Information about this app developers team...</string>
 
+    <!-- Main preferences -->
+    <string name="play_music">Play music</string>
+    <string name="play_music_summary">Play bg music</string>
+
+    <string name="graphics_level">Graphics level</string>
+    <string name="graphics_level_summary">Choose graphics level</string>
+
+    <string name="asteroid_fragments">Asteroids count</string>
+    <string name="asteroid_fragments_summary">Choose asteroid division number</string>
+
 </resources>
