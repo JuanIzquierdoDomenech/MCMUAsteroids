@@ -11,6 +11,7 @@
 
     <!-- Asteroids activity menu -->
     <string name="menu_settings">Ajustes</string>
+    <string name="menu_search">Buscar</string>
 
     <!-- About activity -->
     <string name="about_text">Información sobre los desarrolladores de esta app...</string>
