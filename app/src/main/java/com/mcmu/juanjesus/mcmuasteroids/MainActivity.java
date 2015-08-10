@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent aboutActivityIntent = new Intent(v.getContext(), AboutActivity.class);
+                aboutActivityIntent.putExtra("SomeData", "This is some data :D");
                 startActivity(aboutActivityIntent);
             }
         });
