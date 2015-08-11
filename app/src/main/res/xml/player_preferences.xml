@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:key="preferences_main">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preferences_main"
+    android:title="@string/asteroids">
 
     <CheckBoxPreference
         android:key="music"
@@ -11,8 +13,8 @@
         android:key="graphics_level"
         android:title="@string/graphics_level"
         android:summary="@string/graphics_level_summary"
-        android:entries="@array/graphicLevels"
-        android:entryValues="@array/graphicLevelsValues"
+        android:entries="@array/graphic_levels"
+        android:entryValues="@array/graphic_levels_values"
         android:defaultValue="1"/>
 
     <EditTextPreference
@@ -20,4 +22,24 @@
         android:title="@string/asteroid_fragments"
         android:summary="@string/asteroid_fragments_summary"
         android:defaultValue="3"/>
+
+    <PreferenceCategory android:title="@string/multiplayer">
+
+        <CheckBoxPreference
+            android:key="multiplayer_mode"
+            android:title="@string/activate_multiplayer"/>
+
+        <EditTextPreference
+            android:key="max_players"
+            android:title="@string/max_players"
+            android:defaultValue="2"/>
+
+        <ListPreference
+            android:key="connection_type"
+            android:title="@string/connection_type"
+            android:entries="@array/multiplayer_conn_type"
+            android:entryValues="@array/multiplayer_conn_type_values"
+            android:defaultValue="1"/>
+
+    </PreferenceCategory>
 </PreferenceScreen>

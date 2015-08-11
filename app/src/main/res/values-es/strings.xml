@@ -26,4 +26,12 @@
     <string name="asteroid_fragments">Número de asteroides</string>
     <string name="asteroid_fragments_summary">Elige en cuantos trozos se divide un asteroide</string>
 
+    <string name="multiplayer">Multijugador</string>
+
+    <string name="activate_multiplayer">Activa el modo multijugador</string>
+
+    <string name="max_players">Máximo de jugadores</string>
+
+    <string name="connection_type">Tipo de conexión</string>
+
 </resources>

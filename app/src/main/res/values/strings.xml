@@ -26,4 +26,12 @@
     <string name="asteroid_fragments">Asteroids count</string>
     <string name="asteroid_fragments_summary">Choose asteroid division number</string>
 
+    <string name="multiplayer">Multiplayer</string>
+
+    <string name="activate_multiplayer">Activate multiplayer mode</string>
+
+    <string name="max_players">Max players</string>
+
+    <string name="connection_type">Connection type</string>
+
 </resources>

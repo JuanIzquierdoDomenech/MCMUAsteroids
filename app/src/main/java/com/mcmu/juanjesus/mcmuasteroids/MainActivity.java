@@ -1,6 +1,8 @@
 package com.mcmu.juanjesus.mcmuasteroids;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,12 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     //region Private Member Variables
-    private Button btnLaunchAboutActivity;
-    private Button btnLaunchPreferencesActivity;
+    private Button btnPlay;
+    private Button btnPreferences;
+    private Button btnAbout;
     private Button btnExit;
     //endregion
 
@@ -71,8 +75,24 @@ public class MainActivity extends AppCompatActivity {
     //region UI
     private void linkUI()
     {
-        btnLaunchAboutActivity = (Button)findViewById(R.id.btn_asteroids_about);
-        btnLaunchAboutActivity.setOnClickListener(new View.OnClickListener() {
+        btnPlay = (Button)findViewById(R.id.btn_asteroids_play);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPlayActivity();
+            }
+        });
+
+        btnPreferences = (Button)findViewById(R.id.btn_asteroids_options);
+        btnPreferences.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPreferencesActivity();
+            }
+        });
+
+        btnAbout = (Button)findViewById(R.id.btn_asteroids_about);
+        btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAboutActivity();
@@ -86,14 +106,18 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
-        btnLaunchPreferencesActivity = (Button)findViewById(R.id.btn_asteroids_options);
-        btnLaunchPreferencesActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPreferencesActivity();
-            }
-        });
+    private void showPlayActivity() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String s = "Music: " + pref.getBoolean("music", true)
+                + " Graphics: " + pref.getString("graphics_level", "?");
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showPreferencesActivity() {
+        Intent preferencesActivityIntent = new Intent(getApplicationContext(), PreferencesActivity.class);
+        startActivity(preferencesActivityIntent);
     }
 
     private void showAboutActivity() {
@@ -103,10 +127,6 @@ public class MainActivity extends AppCompatActivity {
         //startActivityForResult(aboutActivityIntent, 9999);
     }
 
-    private void showPreferencesActivity() {
-        Intent preferencesActivityIntent = new Intent(getApplicationContext(), Preferences.class);
-        startActivity(preferencesActivityIntent);
-    }
     //endregion
 
 }
