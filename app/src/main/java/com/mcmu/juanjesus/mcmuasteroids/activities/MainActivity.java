@@ -1,7 +1,9 @@
 package com.mcmu.juanjesus.mcmuasteroids.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
+import com.mcmu.juanjesus.mcmuasteroids.location.GPSLocationListener;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ArrayScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
 
@@ -62,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.menu_share:
                 shareSomethingRandom();
+                break;
+            case R.id.menu_location:
+                showMyLocation();
+                break;
             default:
                 break;
         }
@@ -149,6 +156,13 @@ public class MainActivity extends AppCompatActivity {
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing smzing");
         startActivity(shareIntent);
+    }
+
+    private void showMyLocation() {
+        LocationManager locationManager =
+                (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        GPSLocationListener gpsLocationListener = new GPSLocationListener();
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsLocationListener);
     }
 
     private void exit () {

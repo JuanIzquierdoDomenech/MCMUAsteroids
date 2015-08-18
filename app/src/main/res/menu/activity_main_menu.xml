@@ -20,7 +20,13 @@
         android:title="@string/share"
         android:icon="@android:drawable/ic_menu_share"
         android:orderInCategory="11"
-        app:showAsAction="always|collapseActionView"/>
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/menu_location"
+        android:title="@string/location"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:orderInCategory="12"
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/menu_search"
         android:title="@string/menu_search"
