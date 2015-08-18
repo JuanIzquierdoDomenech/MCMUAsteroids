@@ -16,6 +16,10 @@
     <!-- About activity -->
     <string name="about_text">Información sobre los desarrolladores de esta app...</string>
 
+    <!-- Scores activity -->
+    <string name="scores">Puntuaciones</string>
+    <string name="no_scores">No hay puntuaciones</string>
+
     <!-- Main preferences -->
     <string name="play_music">Reproducir música</string>
     <string name="play_music_summary">Reproducir música de fondo</string>

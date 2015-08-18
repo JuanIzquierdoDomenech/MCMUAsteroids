@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
     //endregion
 
 
+    //region Public Member Variables
+    public static ScoreStorage scoreStorage = new ArrayScoreStorage();
+    //endregion
+
+
     //region Create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                showScoreActivity();
+                //exit();
             }
         });
     }
@@ -125,6 +131,15 @@ public class MainActivity extends AppCompatActivity {
         aboutActivityIntent.putExtra("SendIntent", "This is some data :D");
         startActivity(aboutActivityIntent);
         //startActivityForResult(aboutActivityIntent, 9999);
+    }
+
+    private void showScoreActivity() {
+        Intent scoresActivityIntent = new Intent(getApplicationContext(), ScoresActivity.class);
+        startActivity(scoresActivityIntent);
+    }
+
+    private void exit () {
+        finish();
     }
 
     //endregion

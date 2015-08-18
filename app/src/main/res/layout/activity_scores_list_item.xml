@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight">
+
+    <ImageView
+        android:id="@+id/img_score_list_item_icon"
+        android:layout_width="?android:attr/listPreferredItemHeight"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/asteroid2"/>
+
+    <TextView
+        android:id="@+id/txtv_score_list_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/img_score_list_item_icon"
+        android:layout_alignParentTop="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:singleLine="true"/>
+
+    <TextView
+        android:id="@+id/txtv_score_list_item_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Some text"
+        android:layout_toRightOf="@id/img_score_list_item_icon"
+        android:layout_below="@id/txtv_score_list_item_title"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"/>
+
+</RelativeLayout>

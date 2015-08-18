@@ -16,6 +16,10 @@
     <!-- About activity -->
     <string name="about_text">Information about this app developers team...</string>
 
+    <!-- Scores activity -->
+    <string name="scores">Scores</string>
+    <string name="no_scores">No scores</string>
+
     <!-- Main preferences -->
     <string name="play_music">Play music</string>
     <string name="play_music_summary">Play bg music</string>

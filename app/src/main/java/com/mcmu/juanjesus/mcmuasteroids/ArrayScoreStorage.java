@@ -18,12 +18,12 @@ public class ArrayScoreStorage implements ScoreStorage {
     //endregion
 
     @Override
-    public void SaveScore(int score, String player, long date) {
+    public void saveScore(int score, String player, long date) {
         scores.add(0, score + " " + player);
     }
 
     @Override
-    public Vector<String> ScoreList(int amount) {
+    public Vector<String> scoreList(int amount) {
         return scores;
     }
 }
