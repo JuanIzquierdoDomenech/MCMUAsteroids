@@ -9,15 +9,23 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="5"
         app:showAsAction="never" />
+
     <item android:id="@+id/menu_about"
         android:title="@string/about"
         android:icon="@android:drawable/ic_menu_info_details"
         android:orderInCategory="10"
         app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/menu_share"
+        android:title="@string/share"
+        android:icon="@android:drawable/ic_menu_share"
+        android:orderInCategory="11"
+        app:showAsAction="always|collapseActionView"/>
+
     <item android:id="@+id/menu_search"
         android:title="@string/menu_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:orderInCategory="115"
-        app:showAsAction="always|collapseActionView"/>
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"/>
 
 </menu>

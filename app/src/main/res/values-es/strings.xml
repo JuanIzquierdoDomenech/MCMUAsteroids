@@ -12,6 +12,7 @@
     <!-- Asteroids activity menu -->
     <string name="menu_settings">Ajustes</string>
     <string name="menu_search">Buscar</string>
+    <string name="share">Compartir</string>
 
     <!-- About activity -->
     <string name="about_text">Información sobre los desarrolladores de esta app...</string>
@@ -19,6 +20,7 @@
     <!-- Scores activity -->
     <string name="scores">Puntuaciones</string>
     <string name="no_scores">No hay puntuaciones</string>
+    <string name="selection">Selección</string>
 
     <!-- Main preferences -->
     <string name="play_music">Reproducir música</string>

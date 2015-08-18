@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_about:
                 showAboutActivity();
                 break;
+            case R.id.menu_share:
+                shareSomethingRandom();
             default:
                 break;
         }
@@ -140,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
     private void showScoreActivity() {
         Intent scoresActivityIntent = new Intent(getApplicationContext(), ScoresActivity.class);
         startActivity(scoresActivityIntent);
+    }
+
+    private void shareSomethingRandom() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing smzing");
+        startActivity(shareIntent);
     }
 
     private void exit () {
