@@ -1,4 +1,4 @@
-package com.mcmu.juanjesus.mcmuasteroids;
+package com.mcmu.juanjesus.mcmuasteroids.score_storage;
 
 import java.util.Vector;
 

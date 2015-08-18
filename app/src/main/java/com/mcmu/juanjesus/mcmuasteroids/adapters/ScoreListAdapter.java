@@ -1,4 +1,4 @@
-package com.mcmu.juanjesus.mcmuasteroids;
+package com.mcmu.juanjesus.mcmuasteroids.adapters;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mcmu.juanjesus.mcmuasteroids.R;
 
 import java.util.Vector;
 

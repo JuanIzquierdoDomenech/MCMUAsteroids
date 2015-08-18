@@ -1,9 +1,11 @@
-package com.mcmu.juanjesus.mcmuasteroids;
+package com.mcmu.juanjesus.mcmuasteroids.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.mcmu.juanjesus.mcmuasteroids.R;
 
 public class AboutActivity extends AppCompatActivity {
 

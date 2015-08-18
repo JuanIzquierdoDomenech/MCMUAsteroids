@@ -1,4 +1,4 @@
-package com.mcmu.juanjesus.mcmuasteroids;
+package com.mcmu.juanjesus.mcmuasteroids.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.view.Menu;
 import android.widget.Toast;
+
+import com.mcmu.juanjesus.mcmuasteroids.R;
+import com.mcmu.juanjesus.mcmuasteroids.score_storage.ArrayScoreStorage;
+import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
 
 public class MainActivity extends AppCompatActivity {
 

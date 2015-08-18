@@ -1,8 +1,10 @@
-package com.mcmu.juanjesus.mcmuasteroids;
+package com.mcmu.juanjesus.mcmuasteroids.activities;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+
+import com.mcmu.juanjesus.mcmuasteroids.R;
+import com.mcmu.juanjesus.mcmuasteroids.adapters.ScoreListAdapter;
 
 public class ScoresActivity extends ListActivity {
 
