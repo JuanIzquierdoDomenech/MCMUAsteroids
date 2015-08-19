@@ -58,6 +58,13 @@
                 android:layout_margin="10dp"
                 android:text="@string/exit" />
         </TableRow>
+
+        <ImageView
+            android:id="@+id/img_take_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/asteroid1"/>
+
     </TableLayout>
 
 

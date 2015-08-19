@@ -12,8 +12,9 @@
     <!-- Asteroids activity menu -->
     <string name="menu_settings">Ajustes</string>
     <string name="menu_search">Buscar</string>
-    <string name="share">Compartir</string>
-    <string name="location">Localización</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_location">Localización</string>
+    <string name="menu_take_pic">Tomar foto</string>
 
     <!-- About activity -->
     <string name="about_text">Información sobre los desarrolladores de esta app...</string>

@@ -17,13 +17,13 @@
         app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/menu_share"
-        android:title="@string/share"
+        android:title="@string/menu_share"
         android:icon="@android:drawable/ic_menu_share"
         android:orderInCategory="11"
         app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/menu_location"
-        android:title="@string/location"
+        android:title="@string/menu_location"
         android:icon="@android:drawable/ic_menu_mylocation"
         android:orderInCategory="12"
         app:showAsAction="ifRoom"/>
@@ -32,6 +32,12 @@
         android:title="@string/menu_search"
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/menu_take_picture"
+        android:title="@string/menu_take_pic"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:orderInCategory="110"
         app:showAsAction="ifRoom"/>
 
 </menu>
