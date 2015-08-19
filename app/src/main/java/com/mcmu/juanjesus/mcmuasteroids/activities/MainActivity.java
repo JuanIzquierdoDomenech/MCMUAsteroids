@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import com.mcmu.juanjesus.mcmuasteroids.R;
 import com.mcmu.juanjesus.mcmuasteroids.location.GPSLocationListener;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ArrayScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -159,10 +162,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showMyLocation() {
-        LocationManager locationManager =
+        /*LocationManager locationManager =
                 (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         GPSLocationListener gpsLocationListener = new GPSLocationListener();
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsLocationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, gpsLocationListener);*/
+        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", 38.6987672f, -0.47185420989990234f);
+        Log.d("CHIII: -> NO PARSE", uri);
+        Log.d("CHIII: -> PARSE", Uri.parse(uri).toString());
+        Intent mapsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(mapsIntent);
     }
 
     private void exit () {
