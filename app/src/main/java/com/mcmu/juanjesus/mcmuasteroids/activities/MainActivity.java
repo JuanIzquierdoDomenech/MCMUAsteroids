@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
-import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPlayActivity();
+                showGameActivity();
             }
         });
 
@@ -180,11 +179,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     //region Private Methods
-    private void showPlayActivity() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+    private void showGameActivity() {
+        /*SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String s = "Music: " + pref.getBoolean("music", true)
                 + " Graphics: " + pref.getString("graphics_level", "?");
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();*/
+        Intent gameActivityIntent = new Intent(getApplicationContext(), GameActivity.class);
+        startActivity(gameActivityIntent);
     }
 
     private void showPreferencesActivity() {

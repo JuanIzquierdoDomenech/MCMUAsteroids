@@ -22,6 +22,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activities.GameActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Asteroids.FullScreen">
+        </activity>
+
         <activity android:name=".activities.AboutActivity"
             android:theme="@style/Asteroids.Dialog">
         </activity>
