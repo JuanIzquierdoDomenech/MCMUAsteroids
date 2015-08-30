@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="30dp">
+    android:padding="30dp"
+    android:background="@drawable/gradient">
 
     <TextView
         android:theme="@style/Asteroids.TextView"
