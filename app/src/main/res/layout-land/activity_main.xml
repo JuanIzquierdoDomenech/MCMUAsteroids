@@ -9,6 +9,7 @@
     android:background="@drawable/gradient">
 
     <TextView
+        android:id="@+id/txtv_asteroid_title"
         android:theme="@style/Asteroids.TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

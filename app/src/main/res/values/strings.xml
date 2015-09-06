@@ -17,7 +17,7 @@
     <string name="menu_take_pic">Take a pic</string>
 
     <!-- About activity -->
-    <string name="about_text">Information about this app developers team...</string>
+    <string name="about_text">Information about this app developers team (Juan Jesús Izquierdo Doménech)</string>
 
     <!-- Scores activity -->
     <string name="scores">Scores</string>

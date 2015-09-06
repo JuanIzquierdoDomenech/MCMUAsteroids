@@ -11,9 +11,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
@@ -26,6 +29,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     //region Private Member Variables
+    private TextView txtvAsteroidsTitle;
     private Button btnPlay;
     private Button btnPreferences;
     private Button btnAbout;
@@ -50,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         linkUI();
+
+        // Animate text exercise
+        playTestAnimations();
     }
     //endregion
 
@@ -140,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
     //region UI
     private void linkUI()
     {
+
+        txtvAsteroidsTitle = (TextView)findViewById(R.id.txtv_asteroid_title);
+
         btnPlay = (Button)findViewById(R.id.btn_asteroids_play);
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,10 +190,6 @@ public class MainActivity extends AppCompatActivity {
 
     //region Private Methods
     private void showGameActivity() {
-        /*SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        String s = "Music: " + pref.getBoolean("music", true)
-                + " Graphics: " + pref.getString("graphics_level", "?");
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();*/
         Intent gameActivityIntent = new Intent(getApplicationContext(), GameActivity.class);
         startActivity(gameActivityIntent);
     }
@@ -236,6 +242,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void exit () {
         finish();
+    }
+
+    private void playTestAnimations() {
+
+        Animation anims = AnimationUtils.loadAnimation(this, R.anim.zoom_and_rotate);
+        txtvAsteroidsTitle.setAnimation(anims);
+
+        anims = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        btnPlay.setAnimation(anims);
+
+        anims = AnimationUtils.loadAnimation(this, R.anim.translate_right);
+        btnPreferences.setAnimation(anims);
     }
     //endregion
 

@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.GameActivity"
+        <activity
+            android:name=".activities.GameActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Asteroids.FullScreen">
         </activity>

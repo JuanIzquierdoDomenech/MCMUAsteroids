@@ -8,13 +8,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
 
 public class AboutActivity extends AppCompatActivity {
 
     //region Private Member Variables
+    private TextView txtvAbout;
     private ImageView imgTest;
     //endregion
 
@@ -25,6 +28,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        txtvAbout = (TextView)findViewById(R.id.txtv_about);
         imgTest = (ImageView)findViewById(R.id.img_test_about);
 
         // Transition test
@@ -41,6 +45,9 @@ public class AboutActivity extends AppCompatActivity {
                 pikachuAnim.start();
             }
         });
+
+        Animation textTweenAnim = AnimationUtils.loadAnimation(this, R.anim.anim_test);
+        txtvAbout.startAnimation(textTweenAnim);
 
         // Intent extras test
         getTestIntent();

@@ -1,9 +1,18 @@
 package com.mcmu.juanjesus.mcmuasteroids.views;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.PathShape;
+import android.graphics.drawable.shapes.Shape;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
@@ -34,12 +43,68 @@ public class GameView extends View {
     public GameView(Context ctx, AttributeSet attrs) {
 
         super(ctx, attrs);
+
         Drawable spaceshipDrawable, asteroidDrawable, misileDrawable;
 
-        spaceshipDrawable = ctx.getResources().getDrawable(R.drawable.spaceship);
-        asteroidDrawable = ctx.getResources().getDrawable(R.drawable.asteroid1);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        spaceship = new Graphic(this, spaceshipDrawable);
+        // Choose graphics preferences to select drawable type
+        if (pref.getString("graphics_level", "1").equals("0")) {
+
+            ////////////////////////////////////////////////////////// Vector mode
+
+            // Asteroids
+            Path asteroidPath = new Path();
+            asteroidPath.moveTo(0.3f, 0.0f);
+            asteroidPath.lineTo(0.6f, 0.0f);
+            asteroidPath.lineTo(0.6f, 0.3f);
+            asteroidPath.lineTo(0.8f, 0.2f);
+            asteroidPath.lineTo(1.0f, 0.4f);
+            asteroidPath.lineTo(0.8f, 0.6f);
+            asteroidPath.lineTo(0.9f, 0.9f);
+            asteroidPath.lineTo(0.8f, 1.0f);
+            asteroidPath.lineTo(0.4f, 1.0f);
+            asteroidPath.lineTo(0.0f, 0.6f);
+            asteroidPath.lineTo(0.0f, 0.2f);
+            asteroidPath.lineTo(0.3f, 0.0f);
+            ShapeDrawable dAsteroid = new ShapeDrawable(new PathShape(asteroidPath, 1, 1));
+            dAsteroid.getPaint().setColor(Color.WHITE);
+            dAsteroid.getPaint().setStyle(Paint.Style.STROKE);
+            dAsteroid.setIntrinsicWidth(50);
+            dAsteroid.setIntrinsicHeight(50);
+            asteroidDrawable = dAsteroid;
+
+            // Spaceship
+            Path spaceshipPath = new Path();
+            spaceshipPath.moveTo(0.0f, 0.0f);
+            spaceshipPath.lineTo(1.0f, 0.5f);
+            spaceshipPath.lineTo(0.0f, 1.0f);
+            spaceshipPath.lineTo(0.0f, 0.0f);
+            ShapeDrawable dSpaceship = new ShapeDrawable(new PathShape(spaceshipPath, 1, 1));
+            dSpaceship.getPaint().setColor(Color.WHITE);
+            dSpaceship.getPaint().setStyle(Paint.Style.STROKE);
+            dSpaceship.setIntrinsicWidth(50);
+            dSpaceship.setIntrinsicHeight(50);
+            spaceshipDrawable = dSpaceship;
+
+            // Background
+            setBackgroundColor(Color.BLACK);
+
+            // Graphic acceleration
+            setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        } else {
+
+            ////////////////////////////////////////////////////////// Bitmap mode
+
+            // Asteroids
+            asteroidDrawable = ctx.getResources().getDrawable(R.drawable.asteroid1);
+
+            // Spaceship
+            spaceshipDrawable = ctx.getResources().getDrawable(R.drawable.spaceship);
+
+            // Graphic acceleration
+            setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        }
 
         asteroids = new Vector<Graphic>();
         for(int i = 0; i < numAsteroids; i++) {
@@ -50,6 +115,8 @@ public class GameView extends View {
             asteroid.setRotation((int) (Math.random() * 8 - 4));
             asteroids.add(asteroid);
         }
+
+        spaceship = new Graphic(this, spaceshipDrawable);
     }
 
     @Override
