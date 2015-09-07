@@ -2,7 +2,6 @@ package com.mcmu.juanjesus.mcmuasteroids.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,7 +45,7 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
 
-        Animation textTweenAnim = AnimationUtils.loadAnimation(this, R.anim.anim_test);
+        Animation textTweenAnim = AnimationUtils.loadAnimation(this, R.anim.zoom_in);
         txtvAbout.startAnimation(textTweenAnim);
 
         // Intent extras test

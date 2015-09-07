@@ -68,7 +68,7 @@ public class GameView extends View {
             asteroidPath.lineTo(0.0f, 0.2f);
             asteroidPath.lineTo(0.3f, 0.0f);
             ShapeDrawable dAsteroid = new ShapeDrawable(new PathShape(asteroidPath, 1, 1));
-            dAsteroid.getPaint().setColor(Color.WHITE);
+            dAsteroid.getPaint().setColor(Color.RED);
             dAsteroid.getPaint().setStyle(Paint.Style.STROKE);
             dAsteroid.setIntrinsicWidth(50);
             dAsteroid.setIntrinsicHeight(50);
@@ -81,14 +81,14 @@ public class GameView extends View {
             spaceshipPath.lineTo(0.0f, 1.0f);
             spaceshipPath.lineTo(0.0f, 0.0f);
             ShapeDrawable dSpaceship = new ShapeDrawable(new PathShape(spaceshipPath, 1, 1));
-            dSpaceship.getPaint().setColor(Color.WHITE);
+            dSpaceship.getPaint().setColor(Color.BLACK);
             dSpaceship.getPaint().setStyle(Paint.Style.STROKE);
             dSpaceship.setIntrinsicWidth(50);
             dSpaceship.setIntrinsicHeight(50);
             spaceshipDrawable = dSpaceship;
 
             // Background
-            setBackgroundColor(Color.BLACK);
+            setBackgroundColor(Color.WHITE);
 
             // Graphic acceleration
             setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -100,7 +100,7 @@ public class GameView extends View {
             asteroidDrawable = ctx.getResources().getDrawable(R.drawable.asteroid1);
 
             // Spaceship
-            spaceshipDrawable = ctx.getResources().getDrawable(R.drawable.spaceship);
+            spaceshipDrawable = ctx.getResources().getDrawable(R.drawable.spaceship_pixel);
 
             // Graphic acceleration
             setLayerType(View.LAYER_TYPE_HARDWARE, null);

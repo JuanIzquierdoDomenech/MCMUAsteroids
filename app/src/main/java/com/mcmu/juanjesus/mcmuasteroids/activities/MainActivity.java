@@ -170,6 +170,10 @@ public class MainActivity extends AppCompatActivity {
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Tween animations are not stopped when opening a new activity
+                Animation anims = AnimationUtils.loadAnimation(v.getContext(), R.anim.zoom_and_rotate);
+                btnAbout.startAnimation(anims);
+
                 showAboutActivity();
             }
         });
@@ -247,13 +251,19 @@ public class MainActivity extends AppCompatActivity {
     private void playTestAnimations() {
 
         Animation anims = AnimationUtils.loadAnimation(this, R.anim.zoom_and_rotate);
-        txtvAsteroidsTitle.setAnimation(anims);
+        txtvAsteroidsTitle.startAnimation(anims);
 
         anims = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        btnPlay.setAnimation(anims);
+        btnPlay.startAnimation(anims);
 
         anims = AnimationUtils.loadAnimation(this, R.anim.translate_right);
-        btnPreferences.setAnimation(anims);
+        btnPreferences.startAnimation(anims);
+
+        anims = AnimationUtils.loadAnimation(this, R.anim.rotate_pivot_up_left);
+        btnAbout.startAnimation(anims);
+
+        anims = AnimationUtils.loadAnimation(this, R.anim.rotate_pivot_down_right);
+        btnExit.startAnimation(anims);
     }
     //endregion
 
