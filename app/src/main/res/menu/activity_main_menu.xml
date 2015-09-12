@@ -40,4 +40,10 @@
         android:orderInCategory="110"
         app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/menu_calc_factorial"
+        android:title="@string/menu_calc_factorial"
+        android:icon="@android:drawable/ic_secure"
+        android:orderInCategory="120"
+        app:showAsAction="never"/>
+
 </menu>

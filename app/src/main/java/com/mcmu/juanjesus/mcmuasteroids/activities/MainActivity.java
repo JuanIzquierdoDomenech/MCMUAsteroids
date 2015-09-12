@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.mcmu.juanjesus.mcmuasteroids.R;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ArrayScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
+import com.mcmu.juanjesus.mcmuasteroids.tasks.FactorialTask;
 
 import java.io.File;
 import java.util.Locale;
@@ -135,6 +136,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_take_picture:
                 takePicture();
                 break;
+            case R.id.menu_calc_factorial:
+                calculateFactorial();
+                break;
             default:
                 break;
         }
@@ -242,6 +246,12 @@ public class MainActivity extends AppCompatActivity {
         Intent pictureIntent = new Intent("android.media.action.IMAGE_CAPTURE");
         pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);    // Asks to store the requested uri
         startActivityForResult(pictureIntent, TAKE_PIC_RCODE);
+    }
+
+    private void calculateFactorial() {
+
+        FactorialTask factorialTask = new FactorialTask(this);
+        factorialTask.execute(5);
     }
 
     private void exit () {
