@@ -37,6 +37,11 @@ public class GameView extends View {
     private static final int SPACESHIP_GYRE_INC = 5;
     private static final float SPACESHIP_ACCELERATION_INC = 0.5f;
 
+    // Threading and timing
+    private GameThread thread = new GameThread();
+    private static int PROCESS_PERIOD = 50; // How often do we want to process changes
+    private long lastProcess = 0;
+
     //endregion
 
 
@@ -132,6 +137,11 @@ public class GameView extends View {
                 asteroid.setCentY((int) (Math.random() * h));
             } while(asteroid.distance(spaceship) < (w + h)/5);
         }
+
+        lastProcess = System.currentTimeMillis();
+        //if (!thread.isAlive()) {
+        thread.start();
+        //}
     }
 
     @Override
@@ -144,4 +154,51 @@ public class GameView extends View {
             asteroid.drawGraphic(canvas);
         }
     }
+
+
+    // region Physics
+
+    protected void updatePhysics() {
+        long now = System.currentTimeMillis();
+        if (lastProcess + PROCESS_PERIOD > now) {
+            return;
+        }
+
+        double delay = (now - lastProcess) / PROCESS_PERIOD;
+        lastProcess = now;
+
+        spaceship.setAngle((int)(spaceship.getAngle() + spaceshipGyre * delay));
+        double nVelX = spaceship.getVelX() + spaceshipAcceleration
+                * Math.cos(Math.toRadians(spaceship.getAngle())) * delay;
+        double nVelY = spaceship.getVelY() + spaceshipAcceleration
+                * Math.sin(Math.toRadians(spaceship.getAngle())) * delay;
+
+        if (Math.hypot(nVelX, nVelY) <= MAX_SPACECHIP_VEL) {
+            spaceship.setVelX(nVelX);
+            spaceship.setVelY(nVelY);
+        }
+
+        spaceship.incrementPosition(delay);
+
+        for(Graphic asteroid : asteroids) {
+            asteroid.incrementPosition(delay);
+        }
+    }
+
+    // endregion
+
+
+    // region Threading
+    class GameThread extends Thread {
+
+        @Override
+        public void run() {
+
+            while (true) {
+                updatePhysics();
+            }
+        }
+    }
+
+    // endregion
 }
