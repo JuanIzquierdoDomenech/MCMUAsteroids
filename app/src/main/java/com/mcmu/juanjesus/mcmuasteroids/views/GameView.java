@@ -13,6 +13,7 @@ import android.graphics.drawable.shapes.Shape;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
@@ -41,6 +42,10 @@ public class GameView extends View {
     private GameThread thread = new GameThread();
     private static int PROCESS_PERIOD = 50; // How often do we want to process changes
     private long lastProcess = 0;
+
+    // Touch control
+    private float mX, mY = 0;
+    private boolean shooting = false;
 
     //endregion
 
@@ -183,6 +188,45 @@ public class GameView extends View {
         for(Graphic asteroid : asteroids) {
             asteroid.incrementPosition(delay);
         }
+    }
+
+    // endregion
+
+
+    // region Touch Controls
+
+    @Override
+    public boolean onTouchEvent (MotionEvent event) {
+        super.onTouchEvent(event);
+        float x = event.getX();
+        float y = event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                shooting = true;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float dx = Math.abs(x - mX);
+                float dy = Math.abs(y - mY);
+                if (dy < 6 && dx > 6) {
+                    spaceshipGyre = Math.round((x - mX) / 2);
+                    shooting = false;
+                } else if (dx < 6 && dy > 6) {
+                    spaceshipAcceleration = Math.round((mY - y) / 25);
+                    shooting = false;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                spaceshipGyre = 0;
+                spaceshipAcceleration = 0;
+                if (shooting) {
+                    //shootMisile();
+                }
+                break;
+        }
+
+        mX = x;
+        mY = y; Log.d("onTouchEvent", "onTouchEvent");
+        return true;
     }
 
     // endregion

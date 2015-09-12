@@ -70,6 +70,6 @@ public class FactorialTask extends AsyncTask<Integer, Integer, Integer>{
 
     @Override
     protected void onCancelled() {
-        
+
     }
 }
