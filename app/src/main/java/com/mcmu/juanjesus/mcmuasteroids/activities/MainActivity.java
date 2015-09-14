@@ -2,6 +2,11 @@ package com.mcmu.juanjesus.mcmuasteroids.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
+import android.gesture.GestureOverlayView;
+import android.gesture.Prediction;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -25,21 +30,30 @@ import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.tasks.FactorialTask;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GestureOverlayView.OnGesturePerformedListener{
 
     //region Private Member Variables
+
+    // UI
     private TextView txtvAsteroidsTitle;
     private Button btnPlay;
     private Button btnPreferences;
     private Button btnAbout;
     private Button btnExit;
+    private GestureOverlayView gestureOverlayView;
 
+    // Picture
     private final static int TAKE_PIC_RCODE = 3;
     private Uri pictureUri;
     private ImageView imgTakePicture;
     private boolean pictureTaken = false;
+
+    // Gesture
+    private GestureLibrary gestLibrary;
+
     //endregion
 
 
@@ -58,7 +72,43 @@ public class MainActivity extends AppCompatActivity {
 
         // Animate text exercise
         playTestAnimations();
+
+        // Listen for gestures
+        gestLibrary = GestureLibraries.fromRawResource(this, R.raw.gestures);
+        if (!gestLibrary.load()) finish();
+        gestureOverlayView = (GestureOverlayView)findViewById(R.id.gestures_overlay_view);
+        gestureOverlayView.addOnGesturePerformedListener(this);
     }
+    //endregion
+
+
+    //region Gestures
+
+    @Override
+    public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+        ArrayList<Prediction> predictions = gestLibrary.recognize(gesture);
+        if (predictions.size() > 0) {
+            String command = predictions.get(0).name;
+            Log.d("PREDICTION", command);
+            switch (command) {
+                case "play":
+                    showGameActivity();
+                    break;
+                case "settings":
+                    showPreferencesActivity();
+                    break;
+                case "about":
+                    showAboutActivity();
+                    break;
+                case "exit":
+                    exit();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     //endregion
 
 
@@ -275,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
         anims = AnimationUtils.loadAnimation(this, R.anim.rotate_pivot_down_right);
         btnExit.startAnimation(anims);
     }
+
     //endregion
 
 }
