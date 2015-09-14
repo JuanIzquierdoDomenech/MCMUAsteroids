@@ -211,7 +211,14 @@ public class GameView extends View {
                     spaceshipGyre = Math.round((x - mX) / 2);
                     shooting = false;
                 } else if (dx < 6 && dy > 6) {
-                    spaceshipAcceleration = Math.round((mY - y) / 25);
+
+                    float acc = Math.round((mY - y) / 25);
+
+                    // Forbid deceleration
+                    if (acc > 0)
+                    {
+                        spaceshipAcceleration = acc;
+                    }
                     shooting = false;
                 }
                 break;
@@ -225,7 +232,7 @@ public class GameView extends View {
         }
 
         mX = x;
-        mY = y; Log.d("onTouchEvent", "onTouchEvent");
+        mY = y;
         return true;
     }
 
