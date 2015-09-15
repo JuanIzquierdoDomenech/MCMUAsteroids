@@ -1,6 +1,7 @@
 package com.mcmu.juanjesus.mcmuasteroids.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -44,10 +45,12 @@ public class GameView extends View implements SensorEventListener {
     private static final float SPACESHIP_ACCELERATION_INC = 0.5f;
 
     // Missiles
-    private Graphic missile;
+    private Vector<Graphic> missiles;
+    private Vector<Boolean> isMissileActive;
+    private int ammo = 5;
     private static int MISSILE_VEL = 12;
-    public boolean isMissileActive = false;
-    private int missileTime;
+    //public boolean isMissileActive = false;
+    //private int missileTime;
 
     // Threading and timing
     private GameThread thread = new GameThread();
@@ -157,7 +160,17 @@ public class GameView extends View implements SensorEventListener {
         }
 
         spaceship = new Graphic(this, spaceshipDrawable);
-        missile = new Graphic(this, missileDrawable);
+
+        missiles = new Vector<Graphic>();
+        isMissileActive = new Vector<Boolean>();
+        for(int i = 0; i < ammo; i++) {
+            Graphic missile = new Graphic(this, missileDrawable);
+            missiles.add(missile);
+            isMissileActive.add(false);
+
+            // Log.d("MISSILE:", missiles.elementAt(i).toString());
+            // Log.d("IS M ACTIVE:", isMissileActive.elementAt(i).toString());
+        }
 
         // Register sensors
         if (pref.getString("sensors", "0").equals("0")) {
@@ -213,8 +226,11 @@ public class GameView extends View implements SensorEventListener {
             asteroid.drawGraphic(canvas);
         }
 
-        if(isMissileActive) {
-            missile.drawGraphic(canvas);
+        for(int i = 0; i < missiles.size(); i++) {
+            if(isMissileActive.elementAt(i) == Boolean.TRUE) {
+                missiles.elementAt(i).drawGraphic(canvas);
+
+            }
         }
     }
 
@@ -250,22 +266,21 @@ public class GameView extends View implements SensorEventListener {
         }
 
         // Missiles
-        if(isMissileActive) {
-            missile.incrementPosition(delay);
-            missileTime -= delay;
-            if(missileTime < 0) {
-                isMissileActive = false;
-            } else {
-                for (int i = 0; i < asteroids.size(); i++) {
-                    Log.d("Checking collision", "Before");
-                    if (missile.checkCollision(asteroids.elementAt(i))) {
-                        Log.d("Checking collision", "Result: " + asteroids.elementAt(i).toString());
-                        destroyAsteroid(i);
+        for(int i = 0; i < missiles.size(); i++) {
+            if (isMissileActive.elementAt(i) == Boolean.TRUE) {
+
+                missiles.elementAt(i).incrementPosition(delay);
+
+                for (int j = 0; j < asteroids.size(); j++) {
+                    if (missiles.elementAt(i).checkCollision(asteroids.elementAt(j))) {
+
+                        destroyAsteroid(j);
                         break;
                     }
                 }
             }
         }
+
     }
 
     // endregion
@@ -273,18 +288,28 @@ public class GameView extends View implements SensorEventListener {
 
     // region Shooting
 
-    private void destroyAsteroid(int i) {
-        asteroids.remove(i);
-        isMissileActive = false;
+    private void destroyAsteroid(int x) {
+        asteroids.remove(x);
+        isMissileActive.set(x, false);
     }
 
     private void shootMissile() {
+
+        if (ammo == 0) {
+            return;
+        }
+
+        isMissileActive.set(ammo-1, Boolean.TRUE);
+
+        Graphic missile = missiles.elementAt(ammo - 1);
+        ammo--;
+
+        // Log.d("SHOOTING", ""+ammo);
+
         missile.setCentX(spaceship.getCentX());
         missile.setCentY(spaceship.getCentY());
         missile.setAngle(Math.cos(Math.toRadians(missile.getAngle())) * MISSILE_VEL);
         missile.setVelY(Math.sin(Math.toRadians(missile.getAngle())) * MISSILE_VEL);
-        missileTime = (int)Math.min(this.getWidth() / Math.abs(missile.getVelX()), this.getHeight() / Math.abs(missile.getVelY())) - 2;
-        isMissileActive = true;
     }
 
     // endregion
