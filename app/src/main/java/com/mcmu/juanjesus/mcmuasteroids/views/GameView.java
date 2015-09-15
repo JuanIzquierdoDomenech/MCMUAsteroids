@@ -6,9 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.PathShape;
+import android.graphics.drawable.shapes.RectShape;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -41,6 +43,12 @@ public class GameView extends View implements SensorEventListener {
     private static final int SPACESHIP_GYRE_INC = 5;
     private static final float SPACESHIP_ACCELERATION_INC = 0.5f;
 
+    // Missiles
+    private Graphic missile;
+    private static int MISSILE_VEL = 12;
+    public boolean isMissileActive = false;
+    private int missileTime;
+
     // Threading and timing
     private GameThread thread = new GameThread();
     private static int PROCESS_PERIOD = 50; // How often do we want to process changes
@@ -51,6 +59,7 @@ public class GameView extends View implements SensorEventListener {
     private boolean shooting = false;
 
     // Sensors
+    private SensorManager mSensorManager;
     private boolean orientationSensorHasInitialValue = false;
     private float orientationSensorInitialValue;
 
@@ -61,7 +70,9 @@ public class GameView extends View implements SensorEventListener {
 
         super(ctx, attrs);
 
-        Drawable spaceshipDrawable, asteroidDrawable, misileDrawable;
+        mSensorManager = (SensorManager)getContext().getSystemService(Context.SENSOR_SERVICE);
+
+        Drawable spaceshipDrawable, asteroidDrawable, missileDrawable;
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
 
@@ -104,6 +115,14 @@ public class GameView extends View implements SensorEventListener {
             dSpaceship.setIntrinsicHeight(50);
             spaceshipDrawable = dSpaceship;
 
+            // Missile
+            ShapeDrawable dMissile = new ShapeDrawable(new RectShape());
+            dMissile.getPaint().setColor(Color.BLACK);
+            dMissile.getPaint().setStyle(Paint.Style.STROKE);
+            dMissile.setIntrinsicWidth(15);
+            dMissile.setIntrinsicHeight(3);
+            missileDrawable = dMissile;
+
             // Background
             setBackgroundColor(Color.WHITE);
 
@@ -118,6 +137,9 @@ public class GameView extends View implements SensorEventListener {
 
             // Spaceship
             spaceshipDrawable = ctx.getResources().getDrawable(R.drawable.spaceship_pixel);
+
+            // Missile
+            missileDrawable = ctx.getResources().getDrawable(R.drawable.misile1);
 
             // Graphic acceleration
             setLayerType(View.LAYER_TYPE_HARDWARE, null);
@@ -135,6 +157,7 @@ public class GameView extends View implements SensorEventListener {
         }
 
         spaceship = new Graphic(this, spaceshipDrawable);
+        missile = new Graphic(this, missileDrawable);
 
         // Register sensors
         if (pref.getString("sensors", "0").equals("0")) {
@@ -142,7 +165,6 @@ public class GameView extends View implements SensorEventListener {
 
         } else {
             // Some sensor enabled
-            SensorManager mSensorManager = (SensorManager)getContext().getSystemService(Context.SENSOR_SERVICE);
             List<Sensor> sensorList;
 
             if (pref.getString("sensors", "0").equals("1")) {
@@ -190,6 +212,10 @@ public class GameView extends View implements SensorEventListener {
         for(Graphic asteroid : asteroids) {
             asteroid.drawGraphic(canvas);
         }
+
+        if(isMissileActive) {
+            missile.drawGraphic(canvas);
+        }
     }
 
 
@@ -204,6 +230,7 @@ public class GameView extends View implements SensorEventListener {
         double delay = (now - lastProcess) / PROCESS_PERIOD;
         lastProcess = now;
 
+        // Spaceship
         spaceship.setAngle((int) (spaceship.getAngle() + spaceshipGyre * delay));
         double nVelX = spaceship.getVelX() + spaceshipAcceleration
                 * Math.cos(Math.toRadians(spaceship.getAngle())) * delay;
@@ -217,9 +244,45 @@ public class GameView extends View implements SensorEventListener {
 
         spaceship.incrementPosition(delay);
 
+        // Asteroids
         for(Graphic asteroid : asteroids) {
             asteroid.incrementPosition(delay);
         }
+
+        // Missiles
+        if(isMissileActive) {
+            missile.incrementPosition(delay);
+            missileTime -= delay;
+            if(missileTime < 0) {
+                isMissileActive = false;
+            } else {
+                for (int i = 0; i < asteroids.size(); i++) {
+                    if (missile.checkCollision(asteroids.elementAt(i))) {
+                        destroyAsteroid(i);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    // endregion
+
+
+    // region Shooting
+
+    private void destroyAsteroid(int i) {
+        asteroids.remove(i);
+        isMissileActive = false;
+    }
+
+    private void shootMissile() {
+        missile.setCentX(spaceship.getCentX());
+        missile.setCentY(spaceship.getCentY());
+        missile.setAngle(Math.cos(Math.toRadians(missile.getAngle())) * MISSILE_VEL);
+        missile.setVelY(Math.sin(Math.toRadians(missile.getAngle())) * MISSILE_VEL);
+        missileTime = (int)Math.min(this.getWidth() / Math.abs(missile.getVelX()), this.getHeight() / Math.abs(missile.getVelY())) - 2;
+        isMissileActive = true;
     }
 
     // endregion
@@ -258,7 +321,7 @@ public class GameView extends View implements SensorEventListener {
                 spaceshipGyre = 0;
                 spaceshipAcceleration = 0;
                 if (shooting) {
-                    //shootMisile();
+                    shootMissile();
                 }
                 break;
         }
