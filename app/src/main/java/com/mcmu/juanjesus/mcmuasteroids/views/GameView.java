@@ -257,7 +257,9 @@ public class GameView extends View implements SensorEventListener {
                 isMissileActive = false;
             } else {
                 for (int i = 0; i < asteroids.size(); i++) {
+                    Log.d("Checking collision", "Before");
                     if (missile.checkCollision(asteroids.elementAt(i))) {
+                        Log.d("Checking collision", "Result: " + asteroids.elementAt(i).toString());
                         destroyAsteroid(i);
                         break;
                     }

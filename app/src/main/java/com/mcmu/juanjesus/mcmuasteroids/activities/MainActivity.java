@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         ArrayList<Prediction> predictions = gestLibrary.recognize(gesture);
         if (predictions.size() > 0) {
             String command = predictions.get(0).name;
-            Log.d("PREDICTION", command);
+            // Log.d("PREDICTION", command);
             switch (command) {
                 case "play":
                     showGameActivity();

@@ -56,7 +56,7 @@ public class Graphic {
     }
 
     public boolean checkCollision(Graphic g) {
-        return (distance(g) < (collisionRadius - g.collisionRadius));
+        return (distance(g) < (collisionRadius + g.collisionRadius));
     }
 
     public Drawable getDrawable() {
