@@ -51,8 +51,8 @@ public class GameView extends View implements SensorEventListener {
     private boolean shooting = false;
 
     // Sensors
-    private boolean hasSensorInitialValue = false;
-    private float sensorInitialValue;
+    private boolean orientationSensorHasInitialValue = false;
+    private float orientationSensorInitialValue;
 
     //endregion
 
@@ -138,19 +138,26 @@ public class GameView extends View implements SensorEventListener {
 
         // Register sensors
         if (pref.getString("sensors", "0").equals("0")) {
-            // NONE
+            // None
 
-        } else if (pref.getString("sensors", "0").equals("1")) {
-            // ORIENTATION
+        } else {
+            // Some sensor enabled
             SensorManager mSensorManager = (SensorManager)getContext().getSystemService(Context.SENSOR_SERVICE);
-            List<Sensor> sensorList = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
+            List<Sensor> sensorList;
+
+            if (pref.getString("sensors", "0").equals("1")) {
+                // ORIENTATION
+                sensorList = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
+
+            } else {
+                // ACCELEROMETER
+                sensorList = mSensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+
+            }
             if (!sensorList.isEmpty()) {
                 Sensor orientationSensor = sensorList.get(0);
                 mSensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_GAME);
             }
-            
-        } else if (pref.getString("sensors", "0").equals("2")) {
-            // ACCELEROMETER
         }
     }
 
@@ -197,7 +204,7 @@ public class GameView extends View implements SensorEventListener {
         double delay = (now - lastProcess) / PROCESS_PERIOD;
         lastProcess = now;
 
-        spaceship.setAngle((int)(spaceship.getAngle() + spaceshipGyre * delay));
+        spaceship.setAngle((int) (spaceship.getAngle() + spaceshipGyre * delay));
         double nVelX = spaceship.getVelX() + spaceshipAcceleration
                 * Math.cos(Math.toRadians(spaceship.getAngle())) * delay;
         double nVelY = spaceship.getVelY() + spaceshipAcceleration
@@ -269,12 +276,23 @@ public class GameView extends View implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        float value = event.values[1];
-        if(!hasSensorInitialValue) {
-            sensorInitialValue = value;
-            hasSensorInitialValue = true;
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        if (pref.getString("sensors", "0").equals("1")) {
+            // ORIENTATION
+            float value = event.values[1];
+            if(!orientationSensorHasInitialValue) {
+                orientationSensorInitialValue = value;
+                orientationSensorHasInitialValue = true;
+            }
+            spaceshipGyre = (int)(value - orientationSensorInitialValue)/3;
+
+        } else {
+            // ACCELEROMETER
+            spaceshipGyre = (int)event.values[0];
+            // Log.d("ACCELEROMETER", event.values[0] + "," + event.values[1] + "," + event.values[2]);
+
         }
-        spaceshipGyre = (int)(value - sensorInitialValue)/3;
     }
 
     @Override
