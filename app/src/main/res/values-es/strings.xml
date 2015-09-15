@@ -43,4 +43,9 @@
 
     <string name="connection_type">Tipo de conexión</string>
 
+    <string name="sensors">Sensores</string>
+    <string name="sensors_summary">Utilizar sensores para jugar</string>
+    <string name="activate_orientation_sensor">Habilitar orientación</string>
+    <string name="activate_accelerometer_sensor">Habilitar acelerómetro</string>
+
 </resources>

@@ -23,4 +23,15 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="sensors">
+        <item>None</item>
+        <item>Orientation</item>
+        <item>Accelerometer</item>
+    </string-array>
+    <string-array name="sensors_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>

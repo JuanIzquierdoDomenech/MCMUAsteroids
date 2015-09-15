@@ -43,4 +43,9 @@
 
     <string name="connection_type">Connection type</string>
 
+    <string name="sensors">Sensors</string>
+    <string name="sensors_summary">Use sensors for gameplay</string>
+    <string name="activate_orientation_sensor">Enable orientation</string>
+    <string name="activate_accelerometer_sensor">Enable accelerometer</string>
+
 </resources>

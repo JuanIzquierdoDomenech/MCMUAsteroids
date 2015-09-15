@@ -42,4 +42,16 @@
             android:defaultValue="1"/>
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/sensors">
+
+        <ListPreference
+            android:key="sensors"
+            android:title="@string/sensors"
+            android:summary="@string/sensors_summary"
+            android:entries="@array/sensors"
+            android:entryValues="@array/sensors_values"
+            android:defaultValue="0"/>
+
+    </PreferenceCategory>
 </PreferenceScreen>

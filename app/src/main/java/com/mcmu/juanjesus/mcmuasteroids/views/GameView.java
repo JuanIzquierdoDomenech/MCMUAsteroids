@@ -9,7 +9,10 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.PathShape;
-import android.graphics.drawable.shapes.Shape;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,9 +22,9 @@ import android.view.View;
 import com.mcmu.juanjesus.mcmuasteroids.R;
 import com.mcmu.juanjesus.mcmuasteroids.graphics.Graphic;
 
-import java.util.Vector;
+import java.util.*;
 
-public class GameView extends View {
+public class GameView extends View implements SensorEventListener {
 
     //region Private Member Variables
 
@@ -46,6 +49,10 @@ public class GameView extends View {
     // Touch control
     private float mX, mY = 0;
     private boolean shooting = false;
+
+    // Sensors
+    private boolean hasSensorInitialValue = false;
+    private float sensorInitialValue;
 
     //endregion
 
@@ -116,6 +123,7 @@ public class GameView extends View {
             setLayerType(View.LAYER_TYPE_HARDWARE, null);
         }
 
+        // Create Graphic instances and store them
         asteroids = new Vector<Graphic>();
         for(int i = 0; i < numAsteroids; i++) {
             Graphic asteroid = new Graphic(this, asteroidDrawable);
@@ -127,6 +135,23 @@ public class GameView extends View {
         }
 
         spaceship = new Graphic(this, spaceshipDrawable);
+
+        // Register sensors
+        if (pref.getString("sensors", "0").equals("0")) {
+            // NONE
+
+        } else if (pref.getString("sensors", "0").equals("1")) {
+            // ORIENTATION
+            SensorManager mSensorManager = (SensorManager)getContext().getSystemService(Context.SENSOR_SERVICE);
+            List<Sensor> sensorList = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
+            if (!sensorList.isEmpty()) {
+                Sensor orientationSensor = sensorList.get(0);
+                mSensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_GAME);
+            }
+            
+        } else if (pref.getString("sensors", "0").equals("2")) {
+            // ACCELEROMETER
+        }
     }
 
     @Override
@@ -193,7 +218,7 @@ public class GameView extends View {
     // endregion
 
 
-    // region Touch Controls
+    // region Touch controls
 
     @Override
     public boolean onTouchEvent (MotionEvent event) {
@@ -234,6 +259,27 @@ public class GameView extends View {
         mX = x;
         mY = y;
         return true;
+    }
+
+    // endregion
+
+
+    // region SensorEventListener interface
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+        float value = event.values[1];
+        if(!hasSensorInitialValue) {
+            sensorInitialValue = value;
+            hasSensorInitialValue = true;
+        }
+        spaceshipGyre = (int)(value - sensorInitialValue)/3;
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 
     // endregion
