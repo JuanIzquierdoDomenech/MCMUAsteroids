@@ -15,11 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.view.Menu;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +36,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements GestureOverlayView.OnGesturePerformedListener{
+public class MainActivity extends AppCompatActivity implements GestureOverlayView.OnGesturePerformedListener {
 
     //region Private Member Variables
 
@@ -74,15 +77,22 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         playTestAnimations();
 
         // Listen for gestures
-        gestLibrary = GestureLibraries.fromRawResource(this, R.raw.gestures);
-        if (!gestLibrary.load()) finish();
-        gestureOverlayView = (GestureOverlayView)findViewById(R.id.gestures_overlay_view);
-        gestureOverlayView.addOnGesturePerformedListener(this);
+        setupGestureListener();
     }
     //endregion
 
 
     //region Gestures
+
+    private void setupGestureListener() {
+
+        gestLibrary = GestureLibraries.fromRawResource(this, R.raw.gestures);
+        if (!gestLibrary.load()) finish();
+        gestureOverlayView = (GestureOverlayView)findViewById(R.id.gestures_overlay_view);
+
+        gestureOverlayView.addOnGesturePerformedListener(this);
+
+    }
 
     @Override
     public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
@@ -201,7 +211,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     //region UI
     private void linkUI()
     {
-
         txtvAsteroidsTitle = (TextView)findViewById(R.id.txtv_asteroid_title);
 
         btnPlay = (Button)findViewById(R.id.btn_asteroids_play);

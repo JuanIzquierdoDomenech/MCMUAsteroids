@@ -1,62 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frame_layout_main_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="30dp"
-    android:background="@drawable/gradient">
-
-    <TextView
-        android:id="@+id/txtv_asteroid_title"
-        android:theme="@style/Asteroids.TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/asteroids"/>
-
-    <Button
-        android:id="@+id/btn_asteroids_play"
-        android:theme="@style/Asteroids.Button"
-        android:background="@color/bright_orange1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/play" />
-
-    <Button
-        android:id="@+id/btn_asteroids_options"
-        android:theme="@style/Asteroids.Button"
-        android:background="@color/bright_orange2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/options" />
-
-    <Button
-        android:id="@+id/btn_asteroids_about"
-        android:theme="@style/Asteroids.Button"
-        android:background="@color/bright_orange3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/about" />
-
-    <Button
-        android:id="@+id/btn_asteroids_exit"
-        android:theme="@style/Asteroids.Button"
-        android:background="@color/bright_orange4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/exit" />
-
-    <ImageView
-        android:id="@+id/img_take_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/asteroid1"/>
+    android:orientation="vertical" >
 
     <android.gesture.GestureOverlayView
         android:id="@+id/gestures_overlay_view"
@@ -64,6 +12,70 @@
         android:layout_height="match_parent"
         android:gestureStrokeType="multiple"
         android:fadeOffset="800"
+        android:gestureColor="#5566FF"
+        android:uncertainGestureColor="#BB0000"
+        android:eventsInterceptionEnabled="false"
         />
 
-</LinearLayout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="30dp"
+        android:background="@drawable/gradient">
+
+        <TextView
+            android:id="@+id/txtv_asteroid_title"
+            android:theme="@style/Asteroids.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/asteroids"/>
+
+        <Button
+            android:id="@+id/btn_asteroids_play"
+            android:theme="@style/Asteroids.Button"
+            android:background="@color/bright_orange1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/play" />
+
+        <Button
+            android:id="@+id/btn_asteroids_options"
+            android:theme="@style/Asteroids.Button"
+            android:background="@color/bright_orange2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/options" />
+
+        <Button
+            android:id="@+id/btn_asteroids_about"
+            android:theme="@style/Asteroids.Button"
+            android:background="@color/bright_orange3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/about" />
+
+        <Button
+            android:id="@+id/btn_asteroids_exit"
+            android:theme="@style/Asteroids.Button"
+            android:background="@color/bright_orange4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/exit" />
+
+        <ImageView
+            android:id="@+id/img_take_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/asteroid1"/>
+
+    </LinearLayout>
+
+</FrameLayout>
