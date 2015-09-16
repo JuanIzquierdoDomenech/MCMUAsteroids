@@ -102,18 +102,23 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             // Log.d("PREDICTION", command);
             switch (command) {
                 case "play":
+                    // Capitalized P
                     showGameActivity();
                     break;
                 case "settings":
+                    // Capitalized P
                     showPreferencesActivity();
                     break;
                 case "about":
+                    // Capitalized A
                     showAboutActivity();
                     break;
                 case "scores":
+                    // Non capitalized s
                     showScoresActivity();
                     break;
                 case "exit":
+                    // Capitalized E
                     exit();
                     break;
                 default:
