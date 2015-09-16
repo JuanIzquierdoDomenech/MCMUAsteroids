@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     private Button btnPlay;
     private Button btnPreferences;
     private Button btnAbout;
-    private Button btnExit;
+    private Button btnScores;
     private GestureOverlayView gestureOverlayView;
 
     // Picture
@@ -109,6 +109,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
                     break;
                 case "about":
                     showAboutActivity();
+                    break;
+                case "scores":
+                    showScoresActivity();
                     break;
                 case "exit":
                     exit();
@@ -241,12 +244,11 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             }
         });
 
-        btnExit = (Button)findViewById(R.id.btn_asteroids_exit);
-        btnExit.setOnClickListener(new View.OnClickListener() {
+        btnScores = (Button)findViewById(R.id.btn_asteroids_scores);
+        btnScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showScoreActivity();
-                //exit();
+                showScoresActivity();
             }
         });
 
@@ -273,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         //startActivityForResult(aboutActivityIntent, 9999);
     }
 
-    private void showScoreActivity() {
+    private void showScoresActivity() {
         Intent scoresActivityIntent = new Intent(getApplicationContext(), ScoresActivity.class);
         startActivity(scoresActivityIntent);
     }
@@ -332,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         btnAbout.startAnimation(anims);
 
         anims = AnimationUtils.loadAnimation(this, R.anim.rotate_pivot_down_right);
-        btnExit.startAnimation(anims);
+        btnScores.startAnimation(anims);
     }
 
     //endregion

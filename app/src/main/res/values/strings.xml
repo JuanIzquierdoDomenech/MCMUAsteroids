@@ -2,7 +2,7 @@
 
     <string name="app_name">MCMUAsteroids</string>
 
-    <!-- Asteroids activity -->
+    <!-- Main activity -->
     <string name="asteroids">Asteroids</string>
     <string name="play">Play</string>
     <string name="options">Options</string>

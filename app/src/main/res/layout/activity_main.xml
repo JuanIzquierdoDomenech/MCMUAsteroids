@@ -62,13 +62,13 @@
             android:text="@string/about" />
 
         <Button
-            android:id="@+id/btn_asteroids_exit"
+            android:id="@+id/btn_asteroids_scores"
             android:theme="@style/Asteroids.Button"
             android:background="@color/bright_orange4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/exit" />
+            android:text="@string/scores" />
 
         <ImageView
             android:id="@+id/img_take_pic"
