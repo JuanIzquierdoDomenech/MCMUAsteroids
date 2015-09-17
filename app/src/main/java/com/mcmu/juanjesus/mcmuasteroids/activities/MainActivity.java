@@ -65,13 +65,33 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     //endregion
 
 
-    //region Create
+    //region Activity Lifecycle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.d("MainActivity", "-------------------------- onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Link UI elements to variables
         linkUI();
+    }
+
+    @Override
+    protected void onStart() {
+
+        Log.d("MainActivity", "-------------------------- onStart");
+
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+
+        Log.d("MainActivity", "-------------------------- onResume");
+
+        super.onResume();
 
         // Animate text exercise
         playTestAnimations();
@@ -79,6 +99,31 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         // Listen for gestures
         setupGestureListener();
     }
+
+    @Override
+    protected void onPause() {
+
+        Log.d("MainActivity", "-------------------------- onPause");
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+
+        Log.d("MainActivity", "-------------------------- onStop");
+
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        Log.d("MainActivity", "-------------------------- onDestroy");
+
+        super.onDestroy();
+    }
+
     //endregion
 
 
@@ -242,8 +287,8 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             @Override
             public void onClick(View v) {
                 // Tween animations are not stopped when opening a new activity
-                Animation anims = AnimationUtils.loadAnimation(v.getContext(), R.anim.zoom_and_rotate);
-                btnAbout.startAnimation(anims);
+                //Animation anims = AnimationUtils.loadAnimation(v.getContext(), R.anim.zoom_and_rotate);
+                //btnAbout.startAnimation(anims);
 
                 showAboutActivity();
             }
