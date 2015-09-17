@@ -53,7 +53,7 @@ public class GameView extends View implements SensorEventListener {
     //private int missileTime;
 
     // Threading and timing
-    private GameThread thread = new GameThread();
+    public GameThread gameThread = new GameThread();
     private static int PROCESS_PERIOD = 50; // How often do we want to process changes
     private long lastProcess = 0;
 
@@ -62,7 +62,7 @@ public class GameView extends View implements SensorEventListener {
     private boolean shooting = false;
 
     // Sensors
-    private SensorManager mSensorManager;
+    public SensorManager mSensorManager;
     private boolean orientationSensorHasInitialValue = false;
     private float orientationSensorInitialValue;
 
@@ -212,7 +212,7 @@ public class GameView extends View implements SensorEventListener {
 
         lastProcess = System.currentTimeMillis();
         //if (!thread.isAlive()) {
-        thread.start();
+        gameThread.start();
         //}
     }
 
@@ -394,15 +394,55 @@ public class GameView extends View implements SensorEventListener {
 
 
     // region Threading
-    class GameThread extends Thread {
+    public class GameThread extends Thread {
+
+        //region Private Member Variables
+
+        private boolean paused, running;
+
+        //endregion
+
+
+        //region Thread lifecycle
+
+        public synchronized void pauseThread() {
+            Log.d("PAUSE IT", "P");
+            paused = true;
+        }
+
+        public synchronized void resumeThread() {
+            Log.d("RESUME IT", "P");
+            paused = false;
+            notify();
+        }
+
+        public void destroyThread() {
+            Log.d("DESTROY IT", "P");
+            running = false;
+            if(paused) resumeThread();
+        }
 
         @Override
         public void run() {
 
-            while (true) {
+            running = true;
+
+            while (running) {
                 updatePhysics();
+                synchronized (this) {
+                    while(paused) {
+                        Log.d("PAUSED", "PAUSED");
+                        try {
+                            wait();
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }
             }
         }
+
+        //endregion
     }
 
     // endregion
