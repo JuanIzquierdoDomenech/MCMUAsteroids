@@ -7,6 +7,7 @@ import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.gesture.Prediction;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -57,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     // Gesture
     private GestureLibrary gestLibrary;
 
+    // Music
+    private MediaPlayer mp;
+
     //endregion
 
 
@@ -76,6 +80,15 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
 
         // Link UI elements to variables
         linkUI();
+
+        // Animate text exercise
+        playTestAnimations();
+
+        // Listen for gestures
+        setupGestureListener();
+
+        // Create media player for audio
+        mp = MediaPlayer.create(this, R.raw.pixelasteroid_audio);
     }
 
     @Override
@@ -84,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         Log.d("MainActivity", "-------------------------- onStart");
 
         super.onStart();
+
+        if(!mp.isPlaying()) {
+            mp.start();
+        }
     }
 
     @Override
@@ -92,12 +109,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         Log.d("MainActivity", "-------------------------- onResume");
 
         super.onResume();
-
-        // Animate text exercise
-        playTestAnimations();
-
-        // Listen for gestures
-        setupGestureListener();
     }
 
     @Override
@@ -113,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
 
         Log.d("MainActivity", "-------------------------- onStop");
 
+        if (mp.isPlaying()) {
+            mp.pause();
+        }
         super.onStop();
     }
 
@@ -121,6 +135,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
 
         Log.d("MainActivity", "-------------------------- onDestroy");
 
+        if (mp.isPlaying()) {
+            mp.pause();
+        }
         super.onDestroy();
     }
 

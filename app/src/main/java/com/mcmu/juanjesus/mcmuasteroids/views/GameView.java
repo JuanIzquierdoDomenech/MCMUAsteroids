@@ -406,18 +406,18 @@ public class GameView extends View implements SensorEventListener {
         //region Thread lifecycle
 
         public synchronized void pauseThread() {
-            Log.d("PAUSE IT", "P");
+            //Log.d("PAUSE IT", "P");
             paused = true;
         }
 
         public synchronized void resumeThread() {
-            Log.d("RESUME IT", "P");
+            //Log.d("RESUME IT", "P");
             paused = false;
             notify();
         }
 
         public void destroyThread() {
-            Log.d("DESTROY IT", "P");
+            //Log.d("DESTROY IT", "P");
             running = false;
             if(paused) resumeThread();
         }
@@ -431,7 +431,7 @@ public class GameView extends View implements SensorEventListener {
                 updatePhysics();
                 synchronized (this) {
                     while(paused) {
-                        Log.d("PAUSED", "PAUSED");
+                        //Log.d("PAUSED", "PAUSED");
                         try {
                             wait();
                         } catch (Exception e) {
