@@ -49,8 +49,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
 
-        super.onDestroy();
         gameView.gameThread.destroyThread();
+        super.onDestroy();
     }
     //endregion
 }
