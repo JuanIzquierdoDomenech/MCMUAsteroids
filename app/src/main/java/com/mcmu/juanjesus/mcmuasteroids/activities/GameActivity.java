@@ -36,6 +36,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
+        gameView.enableSensors();
         gameView.gameThread.resumeThread();
     }
 
@@ -43,6 +44,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onPause() {
 
         super.onPause();
+        gameView.disableSensors();
         gameView.gameThread.pauseThread();
     }
 

@@ -63,6 +63,7 @@ public class GameView extends View implements SensorEventListener {
 
     // Sensors
     public SensorManager mSensorManager;
+    private Sensor currentSensor;
     private boolean orientationSensorHasInitialValue = false;
     private float orientationSensorInitialValue;
 
@@ -190,8 +191,8 @@ public class GameView extends View implements SensorEventListener {
 
             }
             if (!sensorList.isEmpty()) {
-                Sensor orientationSensor = sensorList.get(0);
-                mSensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_GAME);
+                currentSensor = sensorList.get(0);
+                enableSensors();
             }
         }
     }
@@ -361,7 +362,7 @@ public class GameView extends View implements SensorEventListener {
     // endregion
 
 
-    // region SensorEventListener interface
+    // region Sensors
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -388,6 +389,28 @@ public class GameView extends View implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    public void enableSensors() {
+
+        // Check if any sensor is enabled from preferences
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (pref.getString("sensors", "0").equals("0")) {
+            return;
+        }
+
+        mSensorManager.registerListener(this, currentSensor, SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    public void disableSensors() {
+
+        // Check if any sensor is enabled from preferences
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (pref.getString("sensors", "0").equals("0")) {
+            return;
+        }
+
+        mSensorManager.unregisterListener(this);
     }
 
     // endregion
