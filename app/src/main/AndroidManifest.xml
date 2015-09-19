@@ -36,9 +36,10 @@
         </activity>
 
         <activity android:name=".activities.ScoresActivity">
-
         </activity>
 
+        <activity android:name=".activities.VideoActivity">
+        </activity>
     </application>
 
 </manifest>

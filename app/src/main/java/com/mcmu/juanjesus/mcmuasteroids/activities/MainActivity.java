@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.d("MainActivity", "-------------------------- onCreate");
+        //Log.d("MainActivity", "-------------------------- onCreate");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onStart() {
 
-        Log.d("MainActivity", "-------------------------- onStart");
+        //Log.d("MainActivity", "-------------------------- onStart");
 
         super.onStart();
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onResume() {
 
-        Log.d("MainActivity", "-------------------------- onResume");
+        //Log.d("MainActivity", "-------------------------- onResume");
 
         super.onResume();
     }
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onPause() {
 
-        Log.d("MainActivity", "-------------------------- onPause");
+        //Log.d("MainActivity", "-------------------------- onPause");
 
         super.onPause();
     }
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onStop() {
 
-        Log.d("MainActivity", "-------------------------- onStop");
+        //Log.d("MainActivity", "-------------------------- onStop");
 
         if (mp.isPlaying()) {
             mp.pause();
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onDestroy() {
 
-        Log.d("MainActivity", "-------------------------- onDestroy");
+        //Log.d("MainActivity", "-------------------------- onDestroy");
 
         if (mp.isPlaying()) {
             mp.pause();
@@ -216,9 +216,14 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        Log.d("onSaveInstanceState", "onSaveInstanceState");
+        //Log.d("onSaveInstanceState", "onSaveInstanceState");
+
         if (pictureTaken) {
             outState.putString("pictureUri", pictureUri.toString());
+        }
+
+        if (mp != null) {
+            outState.putInt("musicPosition", mp.getCurrentPosition());
         }
         super.onSaveInstanceState(outState);
     }
@@ -226,14 +231,20 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
 
-        Log.d("onRestoreInstanceState", "onRestoreInstanceState - " + pictureTaken);
+        //Log.d("onRestoreInstanceState", "onRestoreInstanceState - " + pictureTaken);
+
         super.onRestoreInstanceState(savedInstanceState);
+
         if (savedInstanceState.getString("pictureUri") != null
                 && savedInstanceState.getString("pictureUri").length() > 0) {
 
             pictureUri = Uri.parse(savedInstanceState.getString("pictureUri"));
             pictureTaken = true;
             imgTakePicture.setImageURI(pictureUri);
+        }
+
+        if (mp != null) {
+            mp.seekTo(savedInstanceState.getInt("musicPosition"));
         }
     }
     //endregion
@@ -268,6 +279,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
                 break;
             case R.id.menu_calc_factorial:
                 calculateFactorial();
+                break;
+            case R.id.menu_play_video:
+                showVideoActivity();
                 break;
             default:
                 break;
@@ -380,6 +394,11 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
 
         FactorialTask factorialTask = new FactorialTask(this);
         factorialTask.execute(5);
+    }
+
+    private void showVideoActivity() {
+        Intent videoActivityIntent = new Intent(getApplicationContext(), VideoActivity.class);
+        startActivity(videoActivityIntent);
     }
 
     private void exit () {

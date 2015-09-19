@@ -46,4 +46,10 @@
         android:orderInCategory="120"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/menu_play_video"
+        android:title="@string/menu_play_video"
+        android:icon="@android:drawable/ic_media_play"
+        android:orderInCategory="130"
+        app:showAsAction="ifRoom"/>
+
 </menu>

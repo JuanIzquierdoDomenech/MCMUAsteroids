@@ -16,6 +16,7 @@
     <string name="menu_location">Location</string>
     <string name="menu_take_pic">Take a pic</string>
     <string name="menu_calc_factorial">Calculate factorial</string>
+    <string name="menu_play_video">Play video</string>
 
     <!-- About activity -->
     <string name="about_text">Information about this app developers team (Juan Jesús Izquierdo Doménech)</string>
