@@ -16,6 +16,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -66,6 +68,10 @@ public class GameView extends View implements SensorEventListener {
     private Sensor currentSensor;
     private boolean orientationSensorHasInitialValue = false;
     private float orientationSensorInitialValue;
+
+    // Multimedia
+    SoundPool soundPool;
+    int idShoot, idExplosion;
 
     //endregion
 
@@ -195,6 +201,11 @@ public class GameView extends View implements SensorEventListener {
                 enableSensors();
             }
         }
+
+        // Initialize multimedia
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+        idShoot = soundPool.load(getContext(), R.raw.shoot, 0);
+        idExplosion = soundPool.load(getContext(), R.raw.explosion, 0);
     }
 
     @Override
@@ -292,6 +303,7 @@ public class GameView extends View implements SensorEventListener {
     private void destroyAsteroid(int x) {
         asteroids.remove(x);
         isMissileActive.set(x, false);
+        soundPool.play(idExplosion, 1, 1, 0, 0, 1);
     }
 
     private void shootMissile() {
@@ -311,6 +323,8 @@ public class GameView extends View implements SensorEventListener {
         missile.setCentY(spaceship.getCentY());
         missile.setAngle(Math.cos(Math.toRadians(missile.getAngle())) * MISSILE_VEL);
         missile.setVelY(Math.sin(Math.toRadians(missile.getAngle())) * MISSILE_VEL);
+
+        soundPool.play(idShoot, 1, 1, 1, 0, 1);
     }
 
     // endregion
