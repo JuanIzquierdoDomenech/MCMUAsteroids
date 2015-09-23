@@ -1,7 +1,6 @@
 package com.mcmu.juanjesus.mcmuasteroids.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
@@ -10,23 +9,16 @@ import android.gesture.Prediction;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.view.Menu;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ArrayScoreStorage;
@@ -39,6 +31,7 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements GestureOverlayView.OnGesturePerformedListener {
 
@@ -83,9 +76,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
 
         // Inject butter knife dependencies
         ButterKnife.bind(this);
-
-        // Link UI elements to variables
-        linkUI();
 
         // Animate text exercise
         playTestAnimations();
@@ -299,56 +289,20 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     //endregion
 
 
-    //region UI
-    private void linkUI()
-    {
-        btnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showGameActivity();
-            }
-        });
-
-        btnPreferences.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPreferencesActivity();
-            }
-        });
-
-        btnAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Tween animations are not stopped when opening a new activity
-                //Animation anims = AnimationUtils.loadAnimation(v.getContext(), R.anim.zoom_and_rotate);
-                //btnAbout.startAnimation(anims);
-
-                showAboutActivity();
-            }
-        });
-
-        btnScores.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showScoresActivity();
-            }
-        });
-
-    }
-    //endregion
-
-
     //region Private Methods
-    private void showGameActivity() {
+    @OnClick(R.id.btn_asteroids_play)
+    protected void showGameActivity() {
         Intent gameActivityIntent = new Intent(getApplicationContext(), GameActivity.class);
         startActivity(gameActivityIntent);
     }
 
+    @OnClick(R.id.btn_asteroids_options)
     private void showPreferencesActivity() {
         Intent preferencesActivityIntent = new Intent(getApplicationContext(), PreferencesActivity.class);
         startActivity(preferencesActivityIntent);
     }
 
+    @OnClick(R.id.btn_asteroids_about)
     private void showAboutActivity() {
         Intent aboutActivityIntent = new Intent(getApplicationContext(), AboutActivity.class);
         aboutActivityIntent.putExtra("SendIntent", "This is some data :D");
@@ -356,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         //startActivityForResult(aboutActivityIntent, 9999);
     }
 
+    @OnClick(R.id.btn_asteroids_scores)
     private void showScoresActivity() {
         Intent scoresActivityIntent = new Intent(getApplicationContext(), ScoresActivity.class);
         startActivity(scoresActivityIntent);
