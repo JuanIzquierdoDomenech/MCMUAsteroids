@@ -14,11 +14,14 @@ import com.mcmu.juanjesus.mcmuasteroids.views.GameView;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class GameActivity extends AppCompatActivity {
 
     //region Private Member Variables
 
-    private GameView gameView;
+    @Bind(R.id.game_view) GameView gameView;
 
     //endregion
 
@@ -29,7 +32,8 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        gameView = (GameView)findViewById(R.id.game_view);
+        // Inject butter knife dependencies
+        ButterKnife.bind(this);
     }
 
     @Override

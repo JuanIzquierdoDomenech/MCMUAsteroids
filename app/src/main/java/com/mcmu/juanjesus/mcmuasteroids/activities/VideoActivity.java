@@ -17,15 +17,24 @@ import com.mcmu.juanjesus.mcmuasteroids.R;
 
 import org.w3c.dom.Text;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class VideoActivity extends Activity implements MediaPlayer.OnBufferingUpdateListener,
         MediaPlayer.OnCompletionListener, MediaPlayer.OnPreparedListener, SurfaceHolder.Callback{
 
     private MediaPlayer mediaPlayer;
-    private SurfaceView surfaceView;
+
+    @Bind(R.id.videoview) SurfaceView surfaceView;
     private SurfaceHolder surfaceHolder;
-    private EditText editText;
-    private ImageButton bPlay, bPause, bStop, bLog;
-    private TextView txtvLog;
+
+    @Bind(R.id.edittext_video_path) EditText editText;
+    @Bind(R.id.imgbtn_play) ImageButton bPlay;
+    @Bind(R.id.imgbtn_pause) ImageButton bPause;
+    @Bind(R.id.imgbtn_stop) ImageButton bStop;
+    @Bind(R.id.imgbtn_log) ImageButton bLog;
+    @Bind(R.id.txtv_video_log) TextView txtvLog;
+    
     private boolean pause;
     private String path;
     private int savePos = 0;
@@ -34,15 +43,16 @@ public class VideoActivity extends Activity implements MediaPlayer.OnBufferingUp
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
-        surfaceView = (SurfaceView)findViewById(R.id.videoview);
+
+        // Inject butter knife dependencies
+        ButterKnife.bind(this);
+
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        editText = (EditText)findViewById(R.id.edittext_video_path);
+
         editText.setText("http://personales.upv.es/~jtomas/video.3gp");
-        txtvLog = (TextView)findViewById(R.id.txtv_video_log);
-        log("CREATE");
-        bPlay = (ImageButton)findViewById(R.id.imgbtn_play);
+
         bPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +66,6 @@ public class VideoActivity extends Activity implements MediaPlayer.OnBufferingUp
             }
         });
 
-        bPause = (ImageButton)findViewById(R.id.imgbtn_pause);
         bPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +76,6 @@ public class VideoActivity extends Activity implements MediaPlayer.OnBufferingUp
             }
         });
 
-        bStop = (ImageButton)findViewById(R.id.imgbtn_stop);
         bStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +88,6 @@ public class VideoActivity extends Activity implements MediaPlayer.OnBufferingUp
             }
         });
 
-        bLog = (ImageButton)findViewById(R.id.imgbtn_log);
         bLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +98,7 @@ public class VideoActivity extends Activity implements MediaPlayer.OnBufferingUp
                 }
             }
         });
+
         log("");
     }
 

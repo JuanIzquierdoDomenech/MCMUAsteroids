@@ -13,11 +13,14 @@ import android.widget.TextView;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class AboutActivity extends AppCompatActivity {
 
     //region Private Member Variables
-    private TextView txtvAbout;
-    private ImageView imgTest;
+    @Bind(R.id.txtv_about) TextView txtvAbout;
+    @Bind(R.id.img_test_about) ImageView imgTest;
     //endregion
 
 
@@ -27,8 +30,8 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        txtvAbout = (TextView)findViewById(R.id.txtv_about);
-        imgTest = (ImageView)findViewById(R.id.img_test_about);
+        // Inject butter knife dependencies
+        ButterKnife.bind(this);
 
         // Transition test
         /*TransitionDrawable transition = (TransitionDrawable)getResources().getDrawable(R.drawable.asteroid_transition);
