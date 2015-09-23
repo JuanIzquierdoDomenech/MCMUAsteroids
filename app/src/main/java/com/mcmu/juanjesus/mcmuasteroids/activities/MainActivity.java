@@ -37,22 +37,25 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements GestureOverlayView.OnGesturePerformedListener {
 
     //region Private Member Variables
 
     // UI
-    private TextView txtvAsteroidsTitle;
-    private Button btnPlay;
-    private Button btnPreferences;
-    private Button btnAbout;
-    private Button btnScores;
-    private GestureOverlayView gestureOverlayView;
+    @Bind(R.id.txtv_asteroid_title) TextView txtvAsteroidsTitle;
+    @Bind(R.id.btn_asteroids_play) Button btnPlay;
+    @Bind(R.id.btn_asteroids_options) Button btnPreferences;
+    @Bind(R.id.btn_asteroids_about) Button btnAbout;
+    @Bind(R.id.btn_asteroids_scores) Button btnScores;
+    @Bind(R.id.gestures_overlay_view) GestureOverlayView gestureOverlayView;
 
     // Picture
     private final static int TAKE_PIC_RCODE = 3;
     private Uri pictureUri;
-    private ImageView imgTakePicture;
+    @Bind(R.id.img_take_pic) ImageView imgTakePicture;
     private boolean pictureTaken = false;
 
     // Gesture
@@ -77,6 +80,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Inject butter knife dependencies
+        ButterKnife.bind(this);
 
         // Link UI elements to variables
         linkUI();
@@ -149,8 +155,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     private void setupGestureListener() {
 
         gestLibrary = GestureLibraries.fromRawResource(this, R.raw.gestures);
-        if (!gestLibrary.load()) finish();
-        gestureOverlayView = (GestureOverlayView)findViewById(R.id.gestures_overlay_view);
+        if (!gestLibrary.load()) {
+            finish();
+        }
 
         gestureOverlayView.addOnGesturePerformedListener(this);
 
@@ -295,9 +302,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     //region UI
     private void linkUI()
     {
-        txtvAsteroidsTitle = (TextView)findViewById(R.id.txtv_asteroid_title);
-
-        btnPlay = (Button)findViewById(R.id.btn_asteroids_play);
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -305,7 +309,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             }
         });
 
-        btnPreferences = (Button)findViewById(R.id.btn_asteroids_options);
         btnPreferences.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -313,7 +316,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             }
         });
 
-        btnAbout = (Button)findViewById(R.id.btn_asteroids_about);
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -325,7 +327,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             }
         });
 
-        btnScores = (Button)findViewById(R.id.btn_asteroids_scores);
         btnScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -333,7 +334,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             }
         });
 
-        imgTakePicture = (ImageView)findViewById(R.id.img_take_pic);
     }
     //endregion
 
