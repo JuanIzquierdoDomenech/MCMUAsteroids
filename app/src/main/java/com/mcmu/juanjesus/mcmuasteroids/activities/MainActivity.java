@@ -297,13 +297,13 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     }
 
     @OnClick(R.id.btn_asteroids_options)
-    private void showPreferencesActivity() {
+    protected void showPreferencesActivity() {
         Intent preferencesActivityIntent = new Intent(getApplicationContext(), PreferencesActivity.class);
         startActivity(preferencesActivityIntent);
     }
 
     @OnClick(R.id.btn_asteroids_about)
-    private void showAboutActivity() {
+    protected void showAboutActivity() {
         Intent aboutActivityIntent = new Intent(getApplicationContext(), AboutActivity.class);
         aboutActivityIntent.putExtra("SendIntent", "This is some data :D");
         startActivity(aboutActivityIntent);
@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     }
 
     @OnClick(R.id.btn_asteroids_scores)
-    private void showScoresActivity() {
+    protected void showScoresActivity() {
         Intent scoresActivityIntent = new Intent(getApplicationContext(), ScoresActivity.class);
         startActivity(scoresActivityIntent);
     }

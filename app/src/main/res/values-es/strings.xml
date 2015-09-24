@@ -49,4 +49,21 @@
     <string name="activate_orientation_sensor">Habilitar orientación</string>
     <string name="activate_accelerometer_sensor">Habilitar acelerómetro</string>
 
+    <!-- arrays.xml strings -->
+    <string name="vector">Vector</string>
+    <string name="bitmap">Bitmap</string>
+    <string name="threeD">3D</string>
+
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+
+    <string name="bluetooth">Bluetooth</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="internet">Internet</string>
+
+    <string name="none">Ninguno</string>
+    <string name="orientation">Orientación</string>
+    <string name="accelerometer">Acelerómetro</string>
+
 </resources>

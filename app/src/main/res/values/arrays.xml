@@ -2,36 +2,36 @@
 <resources>
 
     <string-array name="graphic_levels">
-        <item>Vector</item>
-        <item>Bitmap</item>
-        <item>3D</item>
+        <item>@string/vector</item>
+        <item>@string/bitmap</item>
+        <item>@string/threeD</item>
     </string-array>
     <string-array name="graphic_levels_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+        <item>@string/zero</item>
+        <item>@string/one</item>
+        <item>@string/two</item>
     </string-array>
 
     <string-array name="multiplayer_conn_type">
-        <item>Bluetooth</item>
-        <item>Wi-Fi</item>
-        <item>Internet</item>
+        <item>@string/bluetooth</item>
+        <item>@string/wifi</item>
+        <item>@string/internet</item>
     </string-array>
     <string-array name="multiplayer_conn_type_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+        <item>@string/zero</item>
+        <item>@string/one</item>
+        <item>@string/two</item>
     </string-array>
 
     <string-array name="sensors">
-        <item>None</item>
-        <item>Orientation</item>
-        <item>Accelerometer</item>
+        <item>@string/none</item>
+        <item>@string/orientation</item>
+        <item>@string/accelerometer</item>
     </string-array>
     <string-array name="sensors_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+        <item>@string/zero</item>
+        <item>@string/one</item>
+        <item>@string/two</item>
     </string-array>
 
 </resources>
