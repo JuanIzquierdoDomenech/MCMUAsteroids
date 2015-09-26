@@ -50,7 +50,7 @@ public class ShowLocationInfoActivity extends AppCompatActivity implements Locat
         Criteria criteria = new Criteria();
         criteria.setCostAllowed(false);
         criteria.setAltitudeRequired(false);
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
 
         provider = locManager.getBestProvider(criteria, true);
         log("Best provider: " + provider + "\n");
