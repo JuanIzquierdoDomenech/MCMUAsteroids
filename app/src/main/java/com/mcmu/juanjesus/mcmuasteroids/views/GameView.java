@@ -37,6 +37,7 @@ public class GameView extends View implements SensorEventListener {
     private Vector<Graphic> asteroids;
     private int numAsteroids = 5;
     private int numFragments = 3;
+    private Drawable[] asteroidDrawable = new Drawable[3];
 
     // Spaceship
     private Graphic spaceship;
@@ -82,7 +83,7 @@ public class GameView extends View implements SensorEventListener {
 
         mSensorManager = (SensorManager)getContext().getSystemService(Context.SENSOR_SERVICE);
 
-        Drawable spaceshipDrawable, asteroidDrawable, missileDrawable;
+        Drawable spaceshipDrawable, missileDrawable;
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
 
@@ -105,12 +106,15 @@ public class GameView extends View implements SensorEventListener {
             asteroidPath.lineTo(0.0f, 0.6f);
             asteroidPath.lineTo(0.0f, 0.2f);
             asteroidPath.lineTo(0.3f, 0.0f);
-            ShapeDrawable dAsteroid = new ShapeDrawable(new PathShape(asteroidPath, 1, 1));
-            dAsteroid.getPaint().setColor(Color.RED);
-            dAsteroid.getPaint().setStyle(Paint.Style.STROKE);
-            dAsteroid.setIntrinsicWidth(50);
-            dAsteroid.setIntrinsicHeight(50);
-            asteroidDrawable = dAsteroid;
+
+            for(int i = 0; i < 3; i++) {
+                ShapeDrawable dAsteroid = new ShapeDrawable(new PathShape(asteroidPath, 1, 1));
+                dAsteroid.getPaint().setColor(Color.RED);
+                dAsteroid.getPaint().setStyle(Paint.Style.STROKE);
+                dAsteroid.setIntrinsicWidth(50-i*14);
+                dAsteroid.setIntrinsicHeight(50-i*14);
+                asteroidDrawable[i] = dAsteroid;
+            }
 
             // Spaceship
             Path spaceshipPath = new Path();
@@ -143,7 +147,9 @@ public class GameView extends View implements SensorEventListener {
             ////////////////////////////////////////////////////////// Bitmap mode
 
             // Asteroids
-            asteroidDrawable = ctx.getResources().getDrawable(R.drawable.asteroid1);
+            asteroidDrawable[0] = ctx.getResources().getDrawable(R.drawable.asteroid1);
+            asteroidDrawable[1] = ctx.getResources().getDrawable(R.drawable.asteroid2);
+            asteroidDrawable[2] = ctx.getResources().getDrawable(R.drawable.asteroid3);
 
             // Spaceship
             spaceshipDrawable = ctx.getResources().getDrawable(R.drawable.spaceship_pixel);
@@ -158,7 +164,7 @@ public class GameView extends View implements SensorEventListener {
         // Create Graphic instances and store them
         asteroids = new Vector<Graphic>();
         for(int i = 0; i < numAsteroids; i++) {
-            Graphic asteroid = new Graphic(this, asteroidDrawable);
+            Graphic asteroid = new Graphic(this, asteroidDrawable[0]);
             asteroid.setVelY(Math.random() * 4 - 2);
             asteroid.setVelX(Math.random() * 4 - 2);
             asteroid.setAngle((int) (Math.random() * 360));
@@ -301,8 +307,29 @@ public class GameView extends View implements SensorEventListener {
     // region Shooting
 
     private void destroyAsteroid(int x) {
+
+        int size;
+        if(asteroids.get(x).getDrawable() != asteroidDrawable[2]) {
+            if (asteroids.get(x).getDrawable() == asteroidDrawable[1]) {
+                size = 2;
+            } else {
+                size = 1;
+            }
+
+            for (int n = 0; n < numFragments; n++) {
+                Graphic asteroid = new Graphic(this, asteroidDrawable[size]);
+                asteroid.setCentX(asteroids.get(x).getCentX());
+                asteroid.setCentY(asteroids.get(x).getCentY());
+                asteroid.setVelX(Math.random() * 7 - 2 - size);
+                asteroid.setVelY(Math.random() * 7 - 2 - size);
+                asteroid.setAngle((int) (Math.random() * 360));
+                asteroid.setRotation((int)(Math.random()*8-4));
+                asteroids.add(asteroid);
+            }
+        }
+
         asteroids.remove(x);
-        isMissileActive.set(x, false);
+        isMissileActive.set(ammo, false);
         soundPool.play(idExplosion, 1, 1, 0, 0, 1);
     }
 
