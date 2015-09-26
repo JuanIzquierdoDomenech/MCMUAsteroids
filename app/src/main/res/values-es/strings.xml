@@ -18,6 +18,7 @@
     <string name="menu_calc_factorial">Calcular factorial</string>
     <string name="menu_play_video">Ver video</string>
     <string name="menu_show_location_info">Mostrar localicación</string>
+    <string name="menu_show_google_maps_inside">Abrir google maps en la app</string>
 
     <!-- About activity -->
     <string name="about_text">Información sobre los desarrolladores de esta app (Juan Jesús Izquierdo Doménech)</string>

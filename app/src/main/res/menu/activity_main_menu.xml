@@ -58,4 +58,10 @@
         android:orderInCategory="140"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/menu_show_google_maps_activity"
+        android:title="@string/menu_show_google_maps_inside"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:orderInCategory="150"
+        app:showAsAction="never"/>
+
 </menu>
