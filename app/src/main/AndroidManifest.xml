@@ -40,6 +40,9 @@
 
         <activity android:name=".activities.VideoActivity">
         </activity>
+
+        <activity android:name=".activities.ShowLocationInfoActivity">
+        </activity>
     </application>
 
 </manifest>

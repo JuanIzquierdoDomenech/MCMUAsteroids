@@ -52,4 +52,10 @@
         android:orderInCategory="130"
         app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/menu_show_location_info"
+        android:title="@string/menu_show_location_info"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:orderInCategory="140"
+        app:showAsAction="never"/>
+
 </menu>

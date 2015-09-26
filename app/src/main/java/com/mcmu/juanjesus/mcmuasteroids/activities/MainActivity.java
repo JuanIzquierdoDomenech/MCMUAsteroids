@@ -280,6 +280,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             case R.id.menu_play_video:
                 showVideoActivity();
                 break;
+            case R.id.menu_show_location_info:
+                showLocationInfoActivity();
+                break;
             default:
                 break;
         }
@@ -354,6 +357,11 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     private void showVideoActivity() {
         Intent videoActivityIntent = new Intent(getApplicationContext(), VideoActivity.class);
         startActivity(videoActivityIntent);
+    }
+
+    private void showLocationInfoActivity() {
+        Intent showLocationInfoIntent = new Intent(getApplicationContext(), ShowLocationInfoActivity.class);
+        startActivity(showLocationInfoIntent);
     }
 
     private void exit () {
