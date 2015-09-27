@@ -37,6 +37,7 @@ public class GameView extends View implements SensorEventListener {
     private Vector<Graphic> asteroids;
     private int numAsteroids = 5;
     private int numFragments = 3;
+    private int prefNumFragments;
     private Drawable[] asteroidDrawable = new Drawable[3];
 
     // Spaceship
@@ -52,8 +53,6 @@ public class GameView extends View implements SensorEventListener {
     private Vector<Boolean> isMissileActive;
     private int ammo = 5;
     private static int MISSILE_VEL = 12;
-    //public boolean isMissileActive = false;
-    //private int missileTime;
 
     // Threading and timing
     public GameThread gameThread = new GameThread();
@@ -86,6 +85,8 @@ public class GameView extends View implements SensorEventListener {
         Drawable spaceshipDrawable, missileDrawable;
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        prefNumFragments = Integer.parseInt(pref.getString("asteroid_fragments", "3"));
 
         // Choose graphics preferences to select drawable type
         if (pref.getString("graphics_level", "1").equals("0")) {
@@ -240,14 +241,18 @@ public class GameView extends View implements SensorEventListener {
 
         spaceship.drawGraphic(canvas);
 
-        for(Graphic asteroid : asteroids) {
-            asteroid.drawGraphic(canvas);
+        synchronized (asteroids) {
+            for(Graphic asteroid : asteroids) {
+                asteroid.drawGraphic(canvas);
+            }
         }
 
-        for(int i = 0; i < missiles.size(); i++) {
-            if(isMissileActive.elementAt(i) == Boolean.TRUE) {
-                missiles.elementAt(i).drawGraphic(canvas);
+        synchronized (missiles) {
+            for(int i = 0; i < missiles.size(); i++) {
+                if(isMissileActive.elementAt(i) == Boolean.TRUE) {
+                    missiles.elementAt(i).drawGraphic(canvas);
 
+                }
             }
         }
     }
@@ -316,7 +321,7 @@ public class GameView extends View implements SensorEventListener {
                 size = 1;
             }
 
-            for (int n = 0; n < numFragments; n++) {
+            for (int n = 0; n < prefNumFragments; n++) {
                 Graphic asteroid = new Graphic(this, asteroidDrawable[size]);
                 asteroid.setCentX(asteroids.get(x).getCentX());
                 asteroid.setCentY(asteroids.get(x).getCentY());
