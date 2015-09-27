@@ -68,6 +68,10 @@
     <string name="orientation">Orientation</string>
     <string name="accelerometer">Accelerometer</string>
 
+    <!-- Google maps activity -->
+    <string name="go_to_upv">Go to the UPV</string>
+    <string name="to_my_location">Go to my location</string>
+    <string name="add_marker">Add marker</string>
 
 
 </resources>

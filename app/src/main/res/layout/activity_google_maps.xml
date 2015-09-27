@@ -11,4 +11,28 @@
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.MapFragment"/>
 
+    <Button
+        android:id="@+id/btn_gm_go_upv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btn_gm_go_my_location"
+        android:text="@string/go_to_upv"/>
+
+    <Button
+        android:id="@+id/btn_gm_go_my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/to_my_location"/>
+
+    <Button
+        android:id="@+id/btn_gm_add_marker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/btn_gm_go_my_location"
+        android:text="@string/add_marker"/>
+
 </RelativeLayout>
