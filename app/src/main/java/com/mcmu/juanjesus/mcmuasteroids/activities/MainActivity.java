@@ -1,6 +1,8 @@
 package com.mcmu.juanjesus.mcmuasteroids.activities;
 
+import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
@@ -9,9 +11,11 @@ import android.gesture.Prediction;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -55,7 +59,11 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     private GestureLibrary gestLibrary;
 
     // Music
+    private boolean shouldPlayMusic = true;
     private MediaPlayer mp;
+
+    // Shared preferences
+    private SharedPreferences pref;
 
     //endregion
 
@@ -69,13 +77,15 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Log.d("MainActivity", "-------------------------- onCreate");
+        Log.d("MainActivity", "-------------------------- onCreate");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Inject butter knife dependencies
         ButterKnife.bind(this);
+
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         // Animate text exercise
         playTestAnimations();
@@ -84,33 +94,48 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         setupGestureListener();
 
         // Create media player for audio
+        shouldPlayMusic = pref.getBoolean("music", true);
         mp = MediaPlayer.create(this, R.raw.pixelasteroid_audio);
     }
 
     @Override
     protected void onStart() {
 
-        //Log.d("MainActivity", "-------------------------- onStart");
-
+        Log.d("MainActivity", "-------------------------- onStart");
+        Log.d("SHOULD PLAY MUSIC: ", ""+shouldPlayMusic);
         super.onStart();
 
-        if(!mp.isPlaying()) {
-            mp.start();
+        shouldPlayMusic = pref.getBoolean("music", true);
+        if (shouldPlayMusic) {
+            if(!mp.isPlaying()) {
+                mp.start();
+            }
         }
     }
 
     @Override
     protected void onResume() {
 
-        //Log.d("MainActivity", "-------------------------- onResume");
+        Log.d("MainActivity", "-------------------------- onResume");
 
         super.onResume();
+
+        shouldPlayMusic = pref.getBoolean("music", true);
+        if (!shouldPlayMusic) {
+            if(mp.isPlaying()) {
+                mp.stop();
+            }
+        } else {
+            if(!mp.isPlaying()) {
+                mp.start();
+            }
+        }
     }
 
     @Override
     protected void onPause() {
 
-        //Log.d("MainActivity", "-------------------------- onPause");
+        Log.d("MainActivity", "-------------------------- onPause");
 
         super.onPause();
     }
@@ -118,22 +143,26 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @Override
     protected void onStop() {
 
-        //Log.d("MainActivity", "-------------------------- onStop");
+        Log.d("MainActivity", "-------------------------- onStop");
 
+        shouldPlayMusic = pref.getBoolean("music", true);
         if (mp.isPlaying()) {
             mp.pause();
         }
+
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
 
-        //Log.d("MainActivity", "-------------------------- onDestroy");
+        Log.d("MainActivity", "-------------------------- onDestroy");
 
+        shouldPlayMusic = pref.getBoolean("music", true);
         if (mp.isPlaying()) {
             mp.pause();
         }
+
         super.onDestroy();
     }
 

@@ -80,13 +80,10 @@ public class GameView extends View implements SensorEventListener {
 
         super(ctx, attrs);
 
-        mSensorManager = (SensorManager)getContext().getSystemService(Context.SENSOR_SERVICE);
-
         Drawable spaceshipDrawable, missileDrawable;
-
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-
         prefNumFragments = Integer.parseInt(pref.getString("asteroid_fragments", "3"));
+        mSensorManager = (SensorManager)getContext().getSystemService(Context.SENSOR_SERVICE);
 
         // Choose graphics preferences to select drawable type
         if (pref.getString("graphics_level", "1").equals("0")) {
