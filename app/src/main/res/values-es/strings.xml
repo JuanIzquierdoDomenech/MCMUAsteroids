@@ -77,5 +77,10 @@
     <string name="array">Array</string>
     <string name="preferences">Preferencias</string>
     <string name="internal_file">Fichero interno</string>
+    <string name="external_file">Fichero externo</string>
+    <string name="five">5</string>
+    <string name="four">4</string>
+    <string name="three">3</string>
+    <string name="cannot_read_ext_memory">No se puede leer memoria externa</string>
 
 </resources>

@@ -38,11 +38,13 @@
         <item>@string/array</item>
         <item>@string/preferences</item>
         <item>@string/internal_file</item>
+        <item>@string/external_file</item>
     </string-array>
     <string-array name="scores_values">
         <item>@string/zero</item>
         <item>@string/one</item>
         <item>@string/two</item>
+        <item>@string/three</item>
     </string-array>
 
 </resources>

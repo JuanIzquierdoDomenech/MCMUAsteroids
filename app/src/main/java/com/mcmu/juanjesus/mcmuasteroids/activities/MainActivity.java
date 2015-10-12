@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ArrayScoreStorage;
+import com.mcmu.juanjesus.mcmuasteroids.score_storage.ExternalFileScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.InternalFileScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.PreferencesScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
@@ -148,6 +149,10 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             case 2:
                 Log.d("Score->Storage", "InternalFileScoreStorage");
                 scoreStorage = new InternalFileScoreStorage(this);
+                break;
+            case 3:
+                Log.d("Score->Storage", "ExternalFileScoreStorage");
+                scoreStorage = new ExternalFileScoreStorage(this);
                 break;
             default:
                 break;
