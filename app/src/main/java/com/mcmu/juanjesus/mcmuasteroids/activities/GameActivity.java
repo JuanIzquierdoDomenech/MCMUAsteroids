@@ -34,6 +34,8 @@ public class GameActivity extends AppCompatActivity {
 
         // Inject butter knife dependencies
         ButterKnife.bind(this);
+
+        gameView.setParentActivity(this);
     }
 
     @Override

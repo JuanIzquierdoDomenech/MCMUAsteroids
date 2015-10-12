@@ -1,5 +1,6 @@
 package com.mcmu.juanjesus.mcmuasteroids.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -25,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
+import com.mcmu.juanjesus.mcmuasteroids.activities.MainActivity;
 import com.mcmu.juanjesus.mcmuasteroids.graphics.Graphic;
 
 import java.util.*;
@@ -72,6 +75,15 @@ public class GameView extends View implements SensorEventListener {
     // Multimedia
     SoundPool soundPool;
     int idShoot, idExplosion;
+
+    // Scores
+    private int score = 0;
+
+    // Activity
+    private Activity parent;
+    public void setParentActivity(Activity parent) {
+        this.parent = parent;
+    }
 
     //endregion
 
@@ -254,6 +266,15 @@ public class GameView extends View implements SensorEventListener {
         }
     }
 
+    private void exitGame() {
+        Bundle bundle = new Bundle();
+        bundle.putInt("score", score);
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        parent.setResult(MainActivity.RESULT_OK, intent);
+        parent.finish();
+    }
+
 
     // region Physics
 
@@ -266,7 +287,7 @@ public class GameView extends View implements SensorEventListener {
         double delay = (now - lastProcess) / PROCESS_PERIOD;
         lastProcess = now;
 
-        // Spaceship
+        // Spaceship movement
         spaceship.setAngle((int) (spaceship.getAngle() + spaceshipGyre * delay));
         double nVelX = spaceship.getVelX() + spaceshipAcceleration
                 * Math.cos(Math.toRadians(spaceship.getAngle())) * delay;
@@ -280,12 +301,12 @@ public class GameView extends View implements SensorEventListener {
 
         spaceship.incrementPosition(delay);
 
-        // Asteroids
+        // Asteroids movement
         for(Graphic asteroid : asteroids) {
             asteroid.incrementPosition(delay);
         }
 
-        // Missiles
+        // Missiles collision
         for(int i = 0; i < missiles.size(); i++) {
             if (isMissileActive.elementAt(i) == Boolean.TRUE) {
 
@@ -301,6 +322,12 @@ public class GameView extends View implements SensorEventListener {
             }
         }
 
+        // Spaceship collision
+        for(Graphic asteroid : asteroids) {
+            if(asteroid.checkCollision(spaceship)) {
+                exitGame();
+            }
+        }
     }
 
     // endregion
@@ -333,6 +360,12 @@ public class GameView extends View implements SensorEventListener {
         asteroids.remove(x);
         isMissileActive.set(ammo, false);
         soundPool.play(idExplosion, 1, 1, 0, 0, 1);
+
+        score += 1000;
+
+        if(asteroids.isEmpty()) {
+            exitGame();
+        }
     }
 
     private void shootMissile() {

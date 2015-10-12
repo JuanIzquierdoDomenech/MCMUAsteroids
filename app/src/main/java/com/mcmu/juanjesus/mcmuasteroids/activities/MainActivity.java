@@ -233,6 +233,13 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
 
             pictureTaken = true;
             imgTakePicture.setImageURI(pictureUri);
+        } else if (requestCode == 1234
+                && resultCode == RESULT_OK
+                && data != null) {
+            int score = data.getExtras().getInt("score");
+            String player = "yo";
+            scoreStorage.saveScore(score, player, System.currentTimeMillis());
+            showScoresActivity();
         }
     }
     //endregion
@@ -328,7 +335,8 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     @OnClick(R.id.btn_asteroids_play)
     protected void showGameActivity() {
         Intent gameActivityIntent = new Intent(getApplicationContext(), GameActivity.class);
-        startActivity(gameActivityIntent);
+        //startActivity(gameActivityIntent);
+        startActivityForResult(gameActivityIntent, 1234);
     }
 
     @OnClick(R.id.btn_asteroids_options)
