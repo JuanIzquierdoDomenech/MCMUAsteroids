@@ -72,5 +72,10 @@
     <string name="go_to_upv">Ir a la UPV</string>
     <string name="to_my_location">Ir a mi posición</string>
     <string name="add_marker">Añadir marcador</string>
+    <string name="score_storage">Almacén de puntuaciones</string>
+    <string name="score_storage_summary">Permite elegir el tipo de almacenamiento de las puntuaciones</string>
+    <string name="array">Array</string>
+    <string name="preferences">Preferencias</string>
+    <string name="internal_file">Fichero interno</string>
 
 </resources>

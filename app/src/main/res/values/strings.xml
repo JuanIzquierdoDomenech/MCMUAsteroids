@@ -72,6 +72,11 @@
     <string name="go_to_upv">Go to the UPV</string>
     <string name="to_my_location">Go to my location</string>
     <string name="add_marker">Add marker</string>
+    <string name="score_storage">Score storage</string>
+    <string name="score_storage_summary">Choose score storage type</string>
+    <string name="array">Array</string>
+    <string name="preferences">Preferences</string>
+    <string name="internal_file">Internal file</string>
 
 
 </resources>

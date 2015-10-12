@@ -99,10 +99,6 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         shouldPlayMusic = pref.getBoolean("music", true);
         mp = MediaPlayer.create(this, R.raw.pixelasteroid_audio);
 
-        // Scores
-        //scoreStorage = new ArrayScoreStorage();
-        //scoreStorage = new PreferencesScoreStorage(this);
-        scoreStorage = new InternalFileScoreStorage(this);
     }
 
     @Override
@@ -136,6 +132,25 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             if(!mp.isPlaying()) {
                 mp.start();
             }
+        }
+
+        // Update score storage type
+        int scoreStorageType = Integer.parseInt(pref.getString("score_storage_type", "0"));
+        switch (scoreStorageType) {
+            case 0:
+                Log.d("Score->Storage", "ArrayScoreStorage");
+                scoreStorage = new ArrayScoreStorage();
+                break;
+            case 1:
+                Log.d("Score->Storage", "PreferencesScoreStorage");
+                scoreStorage = new PreferencesScoreStorage(this);
+                break;
+            case 2:
+                Log.d("Score->Storage", "InternalFileScoreStorage");
+                scoreStorage = new InternalFileScoreStorage(this);
+                break;
+            default:
+                break;
         }
     }
 

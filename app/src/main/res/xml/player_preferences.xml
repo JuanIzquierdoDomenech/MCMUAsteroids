@@ -54,4 +54,14 @@
             android:defaultValue="0"/>
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/scores" >
+        <ListPreference
+            android:key="score_storage_type"
+            android:title="@string/score_storage"
+            android:summary="@string/score_storage_summary"
+            android:entries="@array/scores"
+            android:entryValues="@array/scores_values"
+            android:defaultValue="0"/>
+    </PreferenceCategory>
 </PreferenceScreen>
