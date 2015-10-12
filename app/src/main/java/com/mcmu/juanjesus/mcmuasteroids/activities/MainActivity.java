@@ -31,6 +31,7 @@ import com.mcmu.juanjesus.mcmuasteroids.score_storage.ExternalFileScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.InternalFileScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.PreferencesScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.RawResScoreStorage;
+import com.mcmu.juanjesus.mcmuasteroids.score_storage.SAXScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.tasks.FactorialTask;
 
@@ -163,6 +164,12 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             case 5:
                 Log.d("Score->Storage", "AssetsResScoreStorage");
                 scoreStorage = new AssetsResScoreStorage(this);
+                break;
+            case 6:
+                Log.d("Score->Storage", "SAXScoreStorage");
+                scoreStorage = new SAXScoreStorage(this);
+                break;
+            case 7:
                 break;
             default:
                 break;
