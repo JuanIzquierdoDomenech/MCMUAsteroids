@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.mcmu.juanjesus.mcmuasteroids.R;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ArrayScoreStorage;
+import com.mcmu.juanjesus.mcmuasteroids.score_storage.PreferencesScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.tasks.FactorialTask;
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
 
 
     //region Public Member Variables
-    public static ScoreStorage scoreStorage = new ArrayScoreStorage();
+    public static ScoreStorage scoreStorage;
     //endregion
 
 
@@ -96,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
         // Create media player for audio
         shouldPlayMusic = pref.getBoolean("music", true);
         mp = MediaPlayer.create(this, R.raw.pixelasteroid_audio);
+
+        // Scores
+        //scoreStorage = new ArrayScoreStorage();
+        scoreStorage = new PreferencesScoreStorage(this);
     }
 
     @Override

@@ -10,10 +10,10 @@ public class ArrayScoreStorage implements ScoreStorage {
 
     //region Constructors
     public ArrayScoreStorage() {
-        scores = new Vector<String>();
-        scores.add("123000 Pepe1");
-        scores.add("111000 Pepe2");
-        scores.add("011000 Pepe3");
+        scores = new Vector<>();
+        //scores.add("123000 Pepe1");
+        //scores.add("111000 Pepe2");
+        //scores.add("011000 Pepe3");
     }
     //endregion
 
