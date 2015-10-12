@@ -15,7 +15,7 @@ import java.util.Vector;
 
 public class ExternalFileScoreStorage implements ScoreStorage {
 
-    private static String SCORE_FILE = Environment.getExternalStorageDirectory() + "/scores.txt";
+    private static String SCORE_FILE = Environment.getExternalStorageDirectory() + "/scores/scores.txt";
     private Context context;
 
     public ExternalFileScoreStorage(Context context) {

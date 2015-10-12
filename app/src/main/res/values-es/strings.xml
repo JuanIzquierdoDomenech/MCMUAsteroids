@@ -83,5 +83,6 @@
     <string name="three">3</string>
     <string name="cannot_read_ext_memory">No se puede leer memoria externa</string>
     <string name="raw_res">Recurso raw</string>
+    <string name="assets_res">Recurso de assets</string>
 
 </resources>

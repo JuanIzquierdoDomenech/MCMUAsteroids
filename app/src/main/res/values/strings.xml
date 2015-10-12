@@ -83,6 +83,7 @@
     <string name="five">5</string>
     <string name="cannot_read_ext_memory">Cannot read external memory</string>
     <string name="raw_res">Raw resource</string>
+    <string name="assets_res">Asset resource</string>
 
 
 </resources>
