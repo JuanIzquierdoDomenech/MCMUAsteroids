@@ -82,5 +82,6 @@
     <string name="four">4</string>
     <string name="three">3</string>
     <string name="cannot_read_ext_memory">No se puede leer memoria externa</string>
+    <string name="raw_res">Recurso raw</string>
 
 </resources>
