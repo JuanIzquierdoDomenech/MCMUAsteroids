@@ -43,6 +43,8 @@
         <item>@string/assets_res</item>
         <item>@string/sax</item>
         <item>@string/dom</item>
+        <item>@string/sqlite</item>
+        <item>@string/content_provider</item>
     </string-array>
     <string-array name="scores_values">
         <item>@string/zero</item>
@@ -53,6 +55,8 @@
         <item>@string/five</item>
         <item>@string/six</item>
         <item>@string/seven</item>
+        <item>@string/eight</item>
+        <item>@string/nine</item>
     </string-array>
 
 </resources>

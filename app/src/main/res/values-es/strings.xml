@@ -88,5 +88,9 @@
     <string name="six">6</string>
     <string name="sax">SAX XML</string>
     <string name="dom">DOM XML</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="sqlite">SQLite</string>
+    <string name="content_provider">Content provider</string>
 
 </resources>
