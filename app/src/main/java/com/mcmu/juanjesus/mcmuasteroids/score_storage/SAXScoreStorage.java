@@ -107,7 +107,7 @@ public class SAXScoreStorage implements ScoreStorage {
             try {
                 serializer.setOutput(os, "UTF-8");
                 serializer.startDocument("UTF-8", true);
-                serializer.startTag("", "sax_score_lis");
+                serializer.startTag("", "sax_score_list");
                 for(Score score : scoreList) {
                     serializer.startTag("", "score");
                     serializer.attribute("", "date", String.valueOf(score.date));
@@ -119,7 +119,7 @@ public class SAXScoreStorage implements ScoreStorage {
                     serializer.endTag("", "points");
                     serializer.endTag("", "score");
                 }
-                serializer.endTag("", "sax_score_lis");
+                serializer.endTag("", "sax_score_list");
                 serializer.endDocument();
             }catch (Exception e) {
                 e.printStackTrace();
