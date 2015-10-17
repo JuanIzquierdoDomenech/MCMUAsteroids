@@ -25,7 +25,8 @@ public class SQLiteScoreStorage extends SQLiteOpenHelper implements ScoreStorage
     public Vector<String> scoreList(int amount) {
         Vector<String> result = new Vector<>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT points, player FROM scores ORDER BY points DESC LIMIT " + amount, null);
+        String[] fields = {"points", "player"};
+        Cursor cursor = db.query("scores", fields, null, null, null, null, "points DESC", Integer.toString(amount));
         while (cursor.moveToNext()) {
             result.add(cursor.getInt(0) + " " + cursor.getString(1));
         }

@@ -92,6 +92,7 @@
     <string name="nine">9</string>
     <string name="sqlite">SQLite</string>
     <string name="content_provider">Content provider</string>
+    <string name="sqlite_rel">SQLite Rel</string>
 
 
 </resources>

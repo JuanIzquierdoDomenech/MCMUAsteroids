@@ -44,7 +44,7 @@
         <item>@string/sax</item>
         <item>@string/dom</item>
         <item>@string/sqlite</item>
-        <item>@string/content_provider</item>
+        <item>@string/sqlite_rel</item>
     </string-array>
     <string-array name="scores_values">
         <item>@string/zero</item>
