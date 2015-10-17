@@ -45,6 +45,7 @@
         <item>@string/dom</item>
         <item>@string/sqlite</item>
         <item>@string/sqlite_rel</item>
+        <item>@string/content_provider</item>
     </string-array>
     <string-array name="scores_values">
         <item>@string/zero</item>
@@ -57,6 +58,7 @@
         <item>@string/seven</item>
         <item>@string/eight</item>
         <item>@string/nine</item>
+        <item>@string/ten</item>
     </string-array>
 
 </resources>
