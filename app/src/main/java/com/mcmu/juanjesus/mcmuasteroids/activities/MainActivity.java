@@ -37,6 +37,7 @@ import com.mcmu.juanjesus.mcmuasteroids.score_storage.SAXScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.SQLiteRelScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.SQLiteScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ScoreStorage;
+import com.mcmu.juanjesus.mcmuasteroids.score_storage.SocketScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.tasks.FactorialTask;
 
 import java.io.File;
@@ -188,6 +189,10 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             case 10:
                 Log.d("Score->Storage", "ContentProviderScoreStorage");
                 scoreStorage = new ContentProviderScoreStorage(this);
+                break;
+            case 11:
+                Log.d("Score->Storage", "SocketScoreStorage");
+                scoreStorage = new SocketScoreStorage();
                 break;
             default:
                 break;

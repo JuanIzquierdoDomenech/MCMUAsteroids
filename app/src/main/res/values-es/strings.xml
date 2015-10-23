@@ -95,5 +95,11 @@
     <string name="sqlite_rel">SQLite Rel</string>
     <string name="ten">10</string>
     <string name="content_resolver_not_installed">Content Resolver \'org.example.scoresprovider\' no está instalado</string>
+    <string name="socket">Socket</string>
+    <string name="eleven">11</string>
+    <string name="fiveteen">15</string>
+    <string name="fourteen">14</string>
+    <string name="thirteen">13</string>
+    <string name="twelve">12</string>
 
 </resources>
