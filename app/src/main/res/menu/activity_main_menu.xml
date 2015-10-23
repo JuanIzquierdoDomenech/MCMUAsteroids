@@ -64,4 +64,9 @@
         android:orderInCategory="150"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/menu_google_search"
+        android:title="@string/menu_search_google"
+        android:orderInCategory="160"
+        app:showAsAction="never"/>
+
 </menu>

@@ -101,5 +101,11 @@
     <string name="fourteen">14</string>
     <string name="thirteen">13</string>
     <string name="twelve">12</string>
+    <string name="word_to_search">Palabra a buscar</string>
+    <string name="search">Buscar</string>
+    <string name="menu_search_google">Buscar en google</string>
+    <string name="not_found">No encontrado</string>
+    <string name="downloading_magic">Descargando magia...</string>
+    <string name="error_connecting">Error al conectar</string>
 
 </resources>

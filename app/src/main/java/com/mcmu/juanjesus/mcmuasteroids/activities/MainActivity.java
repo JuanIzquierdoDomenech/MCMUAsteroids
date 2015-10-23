@@ -389,6 +389,9 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             case R.id.menu_show_google_maps_activity:
                 showGoogleMapsActivityInsideApp();
                 break;
+            case R.id.menu_google_search:
+                showSearchInGoogleActivity();
+                break;
             default:
                 break;
         }
@@ -474,6 +477,11 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
     private void showGoogleMapsActivityInsideApp() {
         Intent showGoogleMapsInsideIntent = new Intent(getApplicationContext(), GoogleMapsActivity.class);
         startActivity(showGoogleMapsInsideIntent);
+    }
+
+    private void showSearchInGoogleActivity() {
+        Intent showSearchInGoogleIntent = new Intent(getApplicationContext(), GoogleSearchActivity.class);
+        startActivity(showSearchInGoogleIntent);
     }
 
     private void exit () {
