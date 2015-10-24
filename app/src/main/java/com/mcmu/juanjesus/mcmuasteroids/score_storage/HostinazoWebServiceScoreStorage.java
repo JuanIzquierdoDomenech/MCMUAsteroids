@@ -19,6 +19,10 @@ import java.util.concurrent.TimeoutException;
 
 public class HostinazoWebServiceScoreStorage implements ScoreStorage {
 
+    // Example URLs
+    // http://jizquierdo.hostinazo.com/puntuaciones/lista.php?max=10
+    // http://jizquierdo.hostinazo.com/puntuaciones/nueva.php?puntos=1232&nombre=Superman&fecha=0
+
     private String host = "jizquierdo.hostinazo.com";
     private Context context;
 

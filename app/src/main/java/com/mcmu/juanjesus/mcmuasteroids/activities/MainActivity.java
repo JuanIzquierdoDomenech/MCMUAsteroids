@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
                 break;
             case 11:
                 Log.d("Score->Storage", "SocketScoreStorage");
-                scoreStorage = new SocketScoreStorage();
+                scoreStorage = new SocketScoreStorage(this);
                 break;
             case 12:
                 Log.d("Score->Storage", "LocalXAMMPWebServiceScoreStorage");
