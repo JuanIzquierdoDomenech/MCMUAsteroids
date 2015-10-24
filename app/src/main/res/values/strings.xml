@@ -108,6 +108,9 @@
     <string name="downloading_magic">Downloading magic...</string>
     <string name="error_connecting">Error connecting</string>
     <string name="local_xammp">Local XAMMP</string>
+    <string name="error_connecting_server">Error connecting server</string>
+    <string name="error_time_exceed">Time exceeeded</string>
+    <string name="error_async_task">Error with async task</string>
 
 
 </resources>
