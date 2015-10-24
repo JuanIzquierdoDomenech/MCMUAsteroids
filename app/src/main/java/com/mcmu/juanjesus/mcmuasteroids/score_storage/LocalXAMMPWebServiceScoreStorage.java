@@ -20,7 +20,8 @@ import java.util.concurrent.TimeoutException;
 
 public class LocalXAMMPWebServiceScoreStorage implements ScoreStorage {
 
-    private String host = "192.168.1.20";
+    //private String host = "192.168.1.20";
+    private String host = "158.42.146.127";
     private Context context;
 
     public LocalXAMMPWebServiceScoreStorage(Context context) {
@@ -49,10 +50,14 @@ public class LocalXAMMPWebServiceScoreStorage implements ScoreStorage {
         @Override
         protected Void doInBackground(String... params) {
             try {
-                URL url = new URL("http://" + host + "/asteroids_scores/add_score.php" +
+                /*URL url = new URL("http://" + host + "/asteroids_scores/add_score.php" +
                         "?newscore=" + params[0] +
                         "&player=" + URLEncoder.encode(params[1], "UTF-8") +
-                        "&date=" + params[2]);
+                        "&date=" + params[2]);*/
+                URL url = new URL("http://" + host + "/puntuaciones/nueva.php" +
+                        "?puntos=" + params[0] +
+                        "&nombre=" + URLEncoder.encode(params[1], "UTF-8") +
+                        "&fecha=" + params[2]);
                 Log.d("Asteroids", url.toString());
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
@@ -101,7 +106,8 @@ public class LocalXAMMPWebServiceScoreStorage implements ScoreStorage {
         protected Vector<String> doInBackground(Integer... params) {
             Vector<String> result = new Vector<>();
             try {
-                URL url = new URL("http://" + host + "/asteroids_scores/score_list.php?max=" + params[0]);
+                // URL url = new URL("http://" + host + "/asteroids_scores/score_list.php?max=" + params[0]);
+                URL url = new URL("http://" + host + "/puntuaciones/lista.php?max=" + params[0]);
                 Log.d("Asteroids", url.toString());
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 

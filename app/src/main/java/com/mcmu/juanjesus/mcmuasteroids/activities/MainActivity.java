@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
                 && resultCode == RESULT_OK
                 && data != null) {
             int score = data.getExtras().getInt("score");
-            String player = "yo";
+            String player = "NyanCat";
             scoreStorage.saveScore(score, player, System.currentTimeMillis());
             showScoresActivity();
         }
