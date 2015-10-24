@@ -107,5 +107,6 @@
     <string name="not_found">No encontrado</string>
     <string name="downloading_magic">Descargando magia...</string>
     <string name="error_connecting">Error al conectar</string>
+    <string name="local_xammp">Local XAMMP</string>
 
 </resources>

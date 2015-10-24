@@ -47,6 +47,7 @@
         <item>@string/sqlite_rel</item>
         <item>@string/content_provider</item>
         <item>@string/socket</item>
+        <item>@string/local_xammp</item>
     </string-array>
     <string-array name="scores_values">
         <item>@string/zero</item>
@@ -61,6 +62,7 @@
         <item>@string/nine</item>
         <item>@string/ten</item>
         <item>@string/eleven</item>
+        <item>@string/twelve</item>
     </string-array>
 
 </resources>

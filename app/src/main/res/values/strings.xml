@@ -107,6 +107,7 @@
     <string name="not_found">Not found</string>
     <string name="downloading_magic">Downloading magic...</string>
     <string name="error_connecting">Error connecting</string>
+    <string name="local_xammp">Local XAMMP</string>
 
 
 </resources>
