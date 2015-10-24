@@ -111,6 +111,7 @@
     <string name="error_connecting_server">Error connecting server</string>
     <string name="error_time_exceed">Time exceeeded</string>
     <string name="error_async_task">Error with async task</string>
+    <string name="hostinazo_ws">Hostinazo WS</string>
 
 
 </resources>

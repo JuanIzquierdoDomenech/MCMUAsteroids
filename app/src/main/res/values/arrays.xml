@@ -48,6 +48,7 @@
         <item>@string/content_provider</item>
         <item>@string/socket</item>
         <item>@string/local_xammp</item>
+        <item>@string/hostinazo_ws</item>
     </string-array>
     <string-array name="scores_values">
         <item>@string/zero</item>
@@ -63,6 +64,7 @@
         <item>@string/ten</item>
         <item>@string/eleven</item>
         <item>@string/twelve</item>
+        <item>@string/thirteen</item>
     </string-array>
 
 </resources>

@@ -30,6 +30,7 @@ import com.mcmu.juanjesus.mcmuasteroids.score_storage.AssetsResScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ContentProviderScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.DOMScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.ExternalFileScoreStorage;
+import com.mcmu.juanjesus.mcmuasteroids.score_storage.HostinazoWebServiceScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.InternalFileScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.LocalXAMMPWebServiceScoreStorage;
 import com.mcmu.juanjesus.mcmuasteroids.score_storage.PreferencesScoreStorage;
@@ -198,6 +199,10 @@ public class MainActivity extends AppCompatActivity implements GestureOverlayVie
             case 12:
                 Log.d("Score->Storage", "LocalXAMMPWebServiceScoreStorage");
                 scoreStorage = new LocalXAMMPWebServiceScoreStorage(this);
+                break;
+            case 13:
+                Log.d("Score->Storage", "HostinazoWebServiceScoreStorage");
+                scoreStorage = new HostinazoWebServiceScoreStorage(this);
                 break;
             default:
                 break;
